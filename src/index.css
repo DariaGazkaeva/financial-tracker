@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui;
+  background: rgb(240, 242, 245);
+  color: rgb(26, 26, 26);
+}
