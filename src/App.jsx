@@ -1,11 +1,23 @@
+import { useState } from 'react';
+
+import AuthPage from './components/auth/AuthPage';
+
 function App() {
-  return (
-    <>
-      <h1 className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-800'>
-        Финансовый трекер
-      </h1>
-    </>
-  )
+    const [isAuthenticated, setIsAuthenticated] = useState(Boolean(localStorage.getItem('token')));
+
+    const handleLogin = () => {
+        setIsAuthenticated(true);
+    };
+
+    return (
+        <div className="app">
+            {isAuthenticated ? (
+                <div>Главная страница (будет позже)</div>
+            ) : (
+                <AuthPage onLogin={handleLogin} />
+            )}
+        </div>
+    );
 }
 
 export default App

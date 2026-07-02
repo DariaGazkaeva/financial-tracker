@@ -24,6 +24,7 @@ function AppInput({
                 </label>
             )}
             <input
+                id={ name }
                 name={ name }
                 className={clsx(
                     'app-input__field',
