@@ -1,0 +1,11 @@
+.app-button {
+  @apply font-semibold py-2 px-4 rounded-lg disabled:opacity-50;
+}
+
+.app-button--primary {
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-md hover:shadow-lg;
+}
+
+.app-button--secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+}
