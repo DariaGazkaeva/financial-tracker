@@ -1,0 +1,43 @@
+.transaction-item {
+    @apply flex p-3 border-b-2 border-gray-200 hover:bg-gray-100 transition-colors;
+}
+
+.transaction-item__info {
+    @apply flex;
+}
+
+.transaction-item__info--col {
+    @apply flex-col flex-1;
+}
+
+.transaction-item__info--row {
+    @apply items-center gap-2;
+}
+
+.transaction-item__description {
+    @apply text-sm text-gray-500;
+}
+
+.transaction-item__category {
+    @apply text-gray-800 font-medium;
+}
+
+.transaction-item__amount {
+    @apply font-medium;
+}
+
+.transaction-item__amount--income {
+    @apply text-green-600;
+}
+
+.transaction-item__amount--expense {
+    @apply text-red-600;
+}
+
+.transaction-item__date {
+    @apply text-sm text-gray-400;
+}
+
+.transaction-item__delete-btn {
+    @apply text-gray-400 hover:text-red-500 transition-colors;
+}
