@@ -37,6 +37,7 @@ function AppInput({
                 value={ value }
                 onChange={ onChange }
                 disabled={ disabled }
+                {...(register ? register(name) : {})}
             />
             {error && (
                 <span className="app-input__error">

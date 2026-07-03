@@ -11,6 +11,7 @@ function AppSelect({
     error,
     onChange,
     className = '',
+    register,
 }) {
     const fieldClasses = clsx(
         'app-select__field',
@@ -34,6 +35,7 @@ function AppSelect({
                 onChange={ onChange }
                 className={ fieldClasses }
                 disabled={ disabled }
+                {...(register ? register(name) : {})}
             >
                 {options.map((option) => (
                     <option
