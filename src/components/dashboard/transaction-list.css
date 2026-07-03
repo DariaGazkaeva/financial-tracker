@@ -1,0 +1,7 @@
+.transaction-list {
+    @apply bg-white rounded-lg shadow-md overflow-hidden;
+}
+
+.transaction-list__empty {
+    @apply text-center py-8 text-gray-500;
+}
