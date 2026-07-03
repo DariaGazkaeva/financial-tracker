@@ -1,0 +1,31 @@
+.balance-summary {
+    @apply flex flex-col gap-4;
+}
+
+.balance-summary__card {
+    @apply flex flex-col flex-1 p-4 rounded-lg shadow-md text-center;
+}
+
+.balance-summary__cards-container {
+    @apply flex gap-4;
+}
+
+.balance-summary__label {
+    @apply text-sm text-gray-500 font-medium;
+}
+
+.balance-summary__value {
+    @apply text-2xl font-bold;
+}
+
+.balance-summary__value--total {
+    @apply text-gray-800;
+}
+
+.balance-summary__value--income {
+    @apply text-green-600;
+}
+
+.balance-summary__value--expense {
+    @apply text-red-600;
+}
