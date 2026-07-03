@@ -3,7 +3,7 @@
 }
 
 .balance-summary__card {
-    @apply flex flex-col flex-1 p-4 rounded-lg shadow-md text-center;
+    @apply flex flex-col flex-1 p-4 rounded-lg bg-white shadow-md text-center;
 }
 
 .balance-summary__cards-container {

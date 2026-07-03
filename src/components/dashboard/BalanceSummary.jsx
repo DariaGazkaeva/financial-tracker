@@ -20,14 +20,14 @@ function BalanceSummary({
                 <div className="balance-summary__card">
                     <span className="balance-summary__label">Доходы</span>
                     <span className="balance-summary__value balance-summary__value--income">
-                        +{ income }
+                        { income }
                     </span>
                 </div>
 
                 <div className="balance-summary__card">
                     <span className="balance-summary__label">Расходы</span>
                     <span className="balance-summary__value balance-summary__value--expense">
-                        -{ expense }
+                        { expense }
                     </span>
                 </div>
             </div>

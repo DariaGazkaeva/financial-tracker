@@ -12,9 +12,10 @@ function TransactionItem({
         amount,
         category,
         date,
+        type,
     } = transaction;
 
-    const isIncome = amount > 0;
+    const isIncome = type === 'income';
     const formattedAmount = (isIncome ? '+' : '-') + amount;
 
     const amountClasses = clsx(
