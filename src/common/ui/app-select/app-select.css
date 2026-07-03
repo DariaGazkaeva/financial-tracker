@@ -1,0 +1,23 @@
+.app-select {
+    @apply flex flex-col gap-1 w-full;
+}
+
+.app-select__label {
+    @apply text-sm font-medium text-gray-700;
+}
+
+.app-select__field {
+    @apply w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-400 appearance-none;
+}
+
+.app-select__field--error {
+    @apply border-red-500 focus:ring-red-400;
+}
+
+.app-select__field--disabled {
+    @apply opacity-50;
+}
+
+.app-select__error {
+    @apply text-sm text-red-500;
+}
