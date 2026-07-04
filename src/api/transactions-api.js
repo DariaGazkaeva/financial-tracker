@@ -1,3 +1,5 @@
+import { getCategories } from './categories-api.js';
+
 // TODO убрать заглушки с localStorage после добавления бэка
 
 const STORAGE_KEY = 'transactions';
@@ -33,6 +35,7 @@ export const addTransaction = async (transaction) => {
     try {
         const newTransaction = {
             id: Date.now(),
+            category: (await getCategories()).data.find(c => c.id === Number(transaction.categoryId))?.label,
             ...transaction,
         };
 

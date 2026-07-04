@@ -11,6 +11,7 @@ function AppSelect({
     error,
     onChange,
     className = '',
+    placeholder = 'Выберите...',
     register,
 }) {
     const fieldClasses = clsx(
@@ -37,6 +38,11 @@ function AppSelect({
                 disabled={ disabled }
                 {...(register ? register(name) : {})}
             >
+                {placeholder && (
+                    <option value="" disabled hidden>
+                        { placeholder }
+                    </option>
+                )}
                 {options.map((option) => (
                     <option
                         key={ option.id }
