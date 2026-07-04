@@ -1,5 +1,6 @@
-import './app-input.css';
 import clsx from 'clsx';
+
+import './app-input.css';
 
 function AppInput({
     label,
@@ -12,9 +13,10 @@ function AppInput({
     disabled = false,
     register,
     className = '',
+    theme = 'vertical',
 }) {
     return (
-        <div className='app-input'>
+        <div className={`app-input app-input--${theme}`}>
             {label && (
                 <label
                     htmlFor={ name }

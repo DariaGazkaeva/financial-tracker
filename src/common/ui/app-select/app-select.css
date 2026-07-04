@@ -7,7 +7,7 @@
 }
 
 .app-select__field {
-    @apply w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-400 appearance-none;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-400 appearance-none;
 }
 
 .app-select__field--error {
