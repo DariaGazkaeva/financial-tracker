@@ -18,23 +18,23 @@ function App() {
     const [summary, setSummary] = useState({ total: 0, income: 0, expense: 0 });
     const [categories, setCategories] = useState([]);
 
+    const loadData = async (filters = {}) => {
+        const transactionsData = await getTransactions(filters);
+        const summaryData = await getSummary(filters);
+        const categoriesData = await getCategories();
+
+        if (transactionsData.error || summaryData.error || categoriesData.error) {
+            alert('Ошибка получения данных');
+            return;
+        }
+
+        setTransactions(transactionsData.data);
+        setSummary(summaryData.data);
+        setCategories(categoriesData.data);
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            const transactionsData = await getTransactions(); 
-            const summaryData = await getSummary();
-            const categoriesData = await getCategories();
-
-            if (transactionsData.error || summaryData.error || categoriesData.error) {
-                alert('Ошибка получения данных');
-                return;
-            }
-
-            setTransactions(transactionsData.data);
-            setSummary(summaryData.data);
-            setCategories(categoriesData.data);
-        };
-
-        fetchData();
+        loadData();
     }, []);
 
     const onAddTransaction = async (newTransaction) => {
@@ -90,6 +90,7 @@ function App() {
                     categories={ categories }
                     onAddTransaction={ onAddTransaction }
                     onDeleteTransaction={ onDeleteTransaction }
+                    onDateChange={ loadData }
                 />
             ) : (
                 <AuthPage onLogin={handleLogin} />

@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = 'transactions';
 
-export const getTransactions = async () => {
+export const getTransactions = async (filters = {}) => {
     const result = {
         data: null,
         error: null,
@@ -10,7 +10,13 @@ export const getTransactions = async () => {
 
     try {
         const stored = localStorage.getItem(STORAGE_KEY);
-        result.data = stored ? JSON.parse(stored) : [];
+        const transactions = stored ? JSON.parse(stored) : [];
+
+        result.data = transactions.filter(t => {
+            const matchFrom = !filters.fromDate || t.date >= filters.fromDate;
+            const matchTo = !filters.toDate || t.date <= filters.toDate;
+            return matchFrom && matchTo;
+        });
     } catch (error) {
         result.error = error;
     }
@@ -75,14 +81,14 @@ export const calculateSummary = (transactions) => {
     };
 };
 
-export const getSummary = async () => {
+export const getSummary = async (filters = {}) => {
     const result = {
         data: null,
         error: null,
     };
 
     try {
-        const transactions = (await getTransactions()).data;
+        const transactions = (await getTransactions(filters)).data;
         result.data = calculateSummary(transactions);
     } catch (error) {
         result.error = error;

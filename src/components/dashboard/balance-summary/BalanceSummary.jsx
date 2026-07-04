@@ -10,7 +10,7 @@ function BalanceSummary({
     return (
         <div className="balance-summary">
             <div className="balance-summary__card">
-                <span className="balance-summary__label">Баланс</span>
+                <span className="balance-summary__label">Бюджет</span>
                 <span className="balance-summary__value balance-summary__value--total">
                     { total }
                 </span>
