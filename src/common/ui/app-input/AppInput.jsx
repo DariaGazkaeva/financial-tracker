@@ -12,6 +12,7 @@ function AppInput({
     error,
     disabled = false,
     register,
+    rules,
     className = '',
     theme = 'vertical',
 }) {
@@ -39,7 +40,7 @@ function AppInput({
                 value={ value }
                 onChange={ onChange }
                 disabled={ disabled }
-                {...(register ? register(name) : {})}
+                {...(register ? register(name, rules) : {})}
             />
             {error && (
                 <span className="app-input__error">

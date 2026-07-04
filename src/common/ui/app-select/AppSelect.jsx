@@ -13,6 +13,7 @@ function AppSelect({
     className = '',
     placeholder = 'Выберите...',
     register,
+    rules,
 }) {
     const fieldClasses = clsx(
         'app-select__field',
@@ -36,7 +37,7 @@ function AppSelect({
                 onChange={ onChange }
                 className={ fieldClasses }
                 disabled={ disabled }
-                {...(register ? register(name) : {})}
+                {...(register ? register(name, rules) : {})}
             >
                 {placeholder && (
                     <option value="" disabled hidden>
