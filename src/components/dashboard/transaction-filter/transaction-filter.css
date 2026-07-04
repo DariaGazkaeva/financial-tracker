@@ -1,0 +1,3 @@
+.transaction-filter {
+    @apply flex gap-2;
+}

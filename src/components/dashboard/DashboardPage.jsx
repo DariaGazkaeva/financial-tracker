@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import BalanceSummary from './balance-summary/BalanceSummary.jsx';
 import TransactionForm from './transaction-form/TransactionForm.jsx';
 import TransactionList from './transaction-list/TransactionList.jsx';
+import TransactionFilter from './transaction-filter/TransactionFilter.jsx';
 import AppButton from '../../common/ui/app-button/AppButton.jsx';
 
 import './dashboard-page.css';
@@ -17,6 +18,12 @@ function DashboardPage({
     onAddTransaction,
     onDeleteTransaction,
 }) {
+    const [filterType, setFilterType] = useState('all');
+
+    const filteredTransactions = filterType === 'all'
+        ? transactions
+        : transactions.filter(t => t.type === filterType);
+
     return (
         <div className="dashboard-page">
             <header className="dashboard-page__header">
@@ -29,7 +36,7 @@ function DashboardPage({
             </header>
 
             <div className="dashboard-page__main">
-                <div>
+                <div className='dashboard-page__column'>
                     <h2 className="dashboard-page__subtitle">Обзор</h2>
                     <BalanceSummary
                         total={ total }
@@ -38,7 +45,7 @@ function DashboardPage({
                     />
                 </div>
                 
-                <div>
+                <div className='dashboard-page__column'>
                     <h2 className="dashboard-page__subtitle">Добавить</h2>
                     <TransactionForm
                         categories={ categories }
@@ -46,10 +53,14 @@ function DashboardPage({
                     />
                 </div>
 
-                <div>
+                <div className='dashboard-page__column'>
                     <h2 className="dashboard-page__subtitle">История транзакций</h2>
+                    <TransactionFilter
+                        typeValue={ filterType }
+                        onChange={ setFilterType }
+                    />
                     <TransactionList
-                        transactions={ transactions }
+                        transactions={ filteredTransactions }
                         onDelete={ onDeleteTransaction }
                     />
                 </div>

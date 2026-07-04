@@ -22,6 +22,10 @@
     @apply max-h-[80vh] overflow-auto;
 }
 
+.dashboard-page__column {
+    @apply flex flex-col gap-2;
+}
+
 .dashboard-page__subtitle {
-    @apply text-2xl font-bold text-gray-800 md:text-center mb-2;
+    @apply text-lg font-medium pb-2 text-gray-600 border-b border-gray-300;
 }
