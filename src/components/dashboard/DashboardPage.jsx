@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import BalanceSummary from './BalanceSummary.jsx';
-import TransactionForm from './TransactionForm.jsx';
-import TransactionList from './TransactionList.jsx';
+import BalanceSummary from './balance-summary/BalanceSummary.jsx';
+import TransactionForm from './transaction-form/TransactionForm.jsx';
+import TransactionList from './transaction-list/TransactionList.jsx';
 import AppButton from '../../common/ui/app-button/AppButton.jsx';
 
 import './dashboard-page.css';

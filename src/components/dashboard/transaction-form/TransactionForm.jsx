@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 
-import AppInput from '../../common/ui/app-input/AppInput';
-import AppSelect from '../../common/ui/app-select/AppSelect';
-import AppButton from '../../common/ui/app-button/AppButton';
+import AppInput from '../../../common/ui/app-input/AppInput';
+import AppSelect from '../../../common/ui/app-select/AppSelect';
+import AppButton from '../../../common/ui/app-button/AppButton';
 
 import './transaction-form.css';
 

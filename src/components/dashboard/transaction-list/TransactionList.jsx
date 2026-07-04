@@ -1,4 +1,4 @@
-import TransactionItem from './TransactionItem.jsx';
+import TransactionItem from '../transaction-item/TransactionItem.jsx';
 
 import './transaction-list.css';
 
