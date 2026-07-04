@@ -30,7 +30,6 @@ function TransactionForm({
 
     const onSubmit = (data) => {
         const newTransaction = {
-            id: Date.now(),
             description: data.description || '',
             amount: parseFloat(data.amount),
             categoryId: data.categoryId,

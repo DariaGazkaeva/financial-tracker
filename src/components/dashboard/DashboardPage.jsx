@@ -14,6 +14,8 @@ function DashboardPage({
     totalExpense,
     totalIncome,
     categories,
+    onAddTransaction,
+    onDeleteTransaction,
 }) {
     return (
         <div className="dashboard-page">
@@ -40,6 +42,7 @@ function DashboardPage({
                     <h2 className="dashboard-page__subtitle">Добавить</h2>
                     <TransactionForm
                         categories={ categories }
+                        onAddTransaction={ onAddTransaction }
                     />
                 </div>
 
@@ -47,6 +50,7 @@ function DashboardPage({
                     <h2 className="dashboard-page__subtitle">История транзакций</h2>
                     <TransactionList
                         transactions={ transactions }
+                        onDelete={ onDeleteTransaction }
                     />
                 </div>
             </div>
