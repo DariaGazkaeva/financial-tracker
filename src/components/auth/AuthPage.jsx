@@ -10,10 +10,9 @@ function AuthPage({ onLogin }) {
     const [isLogin, setIsLogin] = useState(true);
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
-    // Имитация запроса к серверу
-    const onSubmit = async (data) => {
+    // TODO запрос на бэк
+    const onSubmit = async () => {
         await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log('Данные формы:', data);
         localStorage.setItem('token', 'fake-token');
         onLogin();
     };
@@ -26,14 +25,14 @@ function AuthPage({ onLogin }) {
                 <h1 className="auth-page__title">
                     { isLogin ? 'Вход' : 'Регистрация' }
                 </h1>
-                <form onSubmit={ handleSubmit(onSubmit) } className="auth-page__form">
+                <form onSubmit={handleSubmit(onSubmit)} className="auth-page__form">
                     <AppInput
                         label="Логин"
                         name="login"
                         type="text"
                         placeholder="Ваш логин"
-                        register={ register }
-                        error={ errors.login?.message }
+                        register={register}
+                        error={errors.login?.message}
                         rules={{
                             required: 'Логин обязателен',
                         }}
@@ -43,8 +42,8 @@ function AuthPage({ onLogin }) {
                         name="password"
                         type="password"
                         placeholder="••••••"
-                        register={ register }
-                        error={ errors.password?.message }
+                        register={register}
+                        error={errors.password?.message}
                         rules={{
                             required: 'Пароль обязателен',
                             minLength: {
@@ -54,15 +53,15 @@ function AuthPage({ onLogin }) {
                         }}
                     />
                     <AppButton
-                        text={ isSubmitting ? 'Загрузка...' : (isLogin ? 'Войти' : 'Зарегистрироваться') }
+                        text={isSubmitting ? 'Загрузка...' : (isLogin ? 'Войти' : 'Зарегистрироваться')}
                         type="submit"
                         theme="primary"
-                        disabled={ isSubmitting }
+                        disabled={isSubmitting}
                         className="auth-page__button"
                     />
                     <p className="auth-page__toggle-text">
                         { isLogin ? 'Нет аккаунта?' : 'Уже есть аккаунт?' }
-                        <button type="button" onClick={ toggleMode } className="auth-page__toggle-link">
+                        <button type="button" onClick={toggleMode} className="auth-page__toggle-link">
                             { isLogin ? 'Зарегистрироваться' : 'Войти' }
                         </button>
                     </p>

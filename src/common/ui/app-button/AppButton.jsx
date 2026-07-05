@@ -12,13 +12,13 @@ function AppButton({
     return (
         <button
             className={`app-button ${baseClass}`}
-            onClick={ onClick }
+            onClick={onClick}
             disabled={disabled}
-            type={ type }
+            type={type}
         >
             { text }
         </button>
-    )
+    );
 }
 
 export default AppButton;

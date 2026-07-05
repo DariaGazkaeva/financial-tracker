@@ -46,7 +46,7 @@ function TransactionForm({
 
     return (
         <form
-            onSubmit={ handleSubmit(onSubmit) }
+            onSubmit={handleSubmit(onSubmit)}
             className="transaction-form"
         >
             <div className="transaction-form__fields">
@@ -79,8 +79,8 @@ function TransactionForm({
                     label="Описание"
                     name="description"
                     placeholder="Например: Кофе"
-                    register={ register }
-                    error={ errors.description?.message }
+                    register={register}
+                    error={errors.description?.message}
                 />
 
                 <AppInput
@@ -88,8 +88,8 @@ function TransactionForm({
                     name="amount"
                     placeholder="100"
                     type="number"
-                    register={ register }
-                    error={ errors.amount?.message }
+                    register={register}
+                    error={errors.amount?.message}
                     rules={{
                         required: 'Заполните поле',
                         min: { value: 0.01, message: 'Минимум 0.01' },
@@ -99,9 +99,9 @@ function TransactionForm({
                 <AppSelect
                     label="Категория"
                     name="categoryId"
-                    options={ filteredCategories }
-                    register={ register }
-                    error={ errors.categoryId?.message }
+                    options={filteredCategories}
+                    register={register}
+                    error={errors.categoryId?.message}
                     rules={{
                         required: 'Заполните поле',
                     }}
@@ -111,8 +111,8 @@ function TransactionForm({
                     label="Дата"
                     name="date"
                     type="date"
-                    register={ register }
-                    error={ errors.date?.message }
+                    register={register}
+                    error={errors.date?.message}
                     rules={{
                         required: 'Заполните поле',
                     }}
@@ -121,10 +121,10 @@ function TransactionForm({
 
             <div className="transaction-form__actions">
                 <AppButton
-                    text={ isSubmitting ? 'Добавление...' : 'Добавить' }
+                    text={isSubmitting ? 'Добавление...' : 'Добавить'}
                     type="submit"
                     theme="primary"
-                    disabled={ isSubmitting }
+                    disabled={isSubmitting}
                 />
             </div>
         </form>

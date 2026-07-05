@@ -45,7 +45,7 @@ function App() {
     }, [fromDate, toDate]);
 
     const onAddTransaction = async (newTransaction) => {
-        const { data, error } = await addTransaction(newTransaction);
+        const { error } = await addTransaction(newTransaction);
 
         if (error) {
             alert('Ошибка добавления');
@@ -79,18 +79,18 @@ function App() {
         <div className="app">
             {isAuthenticated ? (
                 <DashboardPage
-                    onLogout={ handleLogout }
-                    transactions={ transactions }
-                    total={ summary.total }
-                    totalIncome={ summary.income }
-                    totalExpense={ summary.expense }
-                    categories={ categories }
-                    onAddTransaction={ onAddTransaction }
-                    onDeleteTransaction={ onDeleteTransaction }
-                    onFromDateChange={ setFromDate }
-                    onToDateChange={ setToDate }
-                    fromDate={ fromDate }
-                    toDate={ toDate }
+                    onLogout={handleLogout}
+                    transactions={transactions}
+                    total={summary.total}
+                    totalIncome={summary.income}
+                    totalExpense={summary.expense}
+                    categories={categories}
+                    onAddTransaction={onAddTransaction}
+                    onDeleteTransaction={onDeleteTransaction}
+                    onFromDateChange={setFromDate}
+                    onToDateChange={setToDate}
+                    fromDate={fromDate}
+                    toDate={toDate}
                 />
             ) : (
                 <AuthPage onLogin={handleLogin} />
@@ -99,4 +99,4 @@ function App() {
     );
 }
 
-export default App
+export default App;

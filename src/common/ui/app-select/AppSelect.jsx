@@ -25,18 +25,18 @@ function AppSelect({
     return (
         <div className='app-select'>
             <label
-                htmlFor={ name }
+                htmlFor={name}
                 className='app-select__label'
             >
                 { label }
             </label>
             <select
-                name={ name }
-                id={ name }
-                value={ value }
-                onChange={ onChange }
-                className={ fieldClasses }
-                disabled={ disabled }
+                name={name}
+                id={name}
+                value={value}
+                onChange={onChange}
+                className={fieldClasses}
+                disabled={disabled}
                 {...(register ? register(name, rules) : {})}
             >
                 {placeholder && (
@@ -46,8 +46,8 @@ function AppSelect({
                 )}
                 {options.map((option) => (
                     <option
-                        key={ option.id }
-                        value={ option.id }
+                        key={option.id}
+                        value={option.id}
                     >
                         { option.label }
                     </option>

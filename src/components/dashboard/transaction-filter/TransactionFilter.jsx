@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-
 import AppButton from '../../../common/ui/app-button/AppButton.jsx';
 
 import './transaction-filter.css';
@@ -15,9 +13,9 @@ function TransactionFilter({ typeValue, onChange }) {
         <div className="transaction-filter">
             {TYPE_OPTIONS.map(option => (
                 <AppButton
-                    key={ option.value }
-                    text={ option.label }
-                    onClick={() => {console.log(option.value); onChange(option.value)}}
+                    key={option.value}
+                    text={option.label}
+                    onClick={() => onChange(option.value)}
                     theme={typeValue === option.value ? 'primary' : 'secondary'}
                 />
             ))}

@@ -20,26 +20,26 @@ function AppInput({
         <div className={`app-input app-input--${theme}`}>
             {label && (
                 <label
-                    htmlFor={ name }
+                    htmlFor={name}
                     className="app-input__label"
                 >
                     { label }
                 </label>
             )}
             <input
-                id={ name }
-                name={ name }
+                id={name}
+                name={name}
                 className={clsx(
                     'app-input__field',
                     error && 'app-input__field--error',
                     disabled && 'app-input__field--disabled',
                     className,
                 )}
-                type={ type }
-                placeholder={ placeholder }
-                value={ value }
-                onChange={ onChange }
-                disabled={ disabled }
+                type={type}
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                disabled={disabled}
                 {...(register ? register(name, rules) : {})}
             />
             {error && (
@@ -48,7 +48,7 @@ function AppInput({
                 </span>
             )}
         </div>
-    )
+    );
 }
 
-export default AppInput
+export default AppInput;

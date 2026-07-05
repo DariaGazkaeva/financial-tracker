@@ -31,7 +31,7 @@ function TransactionItem({
             </div>
 
             <div className="transaction-item__info transaction-item__info--row">
-                <span className={ amountClasses }>{ formattedAmount }</span>
+                <span className={amountClasses}>{ formattedAmount }</span>
                 <span className="transaction-item__date">{ date }</span>
                 <button
                     className="transaction-item__delete-btn"

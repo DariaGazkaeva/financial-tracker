@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-
 import './balance-summary.css';
 
 function BalanceSummary({

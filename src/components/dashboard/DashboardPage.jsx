@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import BalanceSummary from './balance-summary/BalanceSummary.jsx';
 import TransactionForm from './transaction-form/TransactionForm.jsx';
@@ -39,7 +39,7 @@ function DashboardPage({
                             label="С"
                             name="fromDate"
                             type="date"
-                            value={ fromDate }
+                            value={fromDate}
                             onChange={(e) => onFromDateChange(e.target.value)}
                             theme='horizontal'
                         />
@@ -47,7 +47,7 @@ function DashboardPage({
                             label="По"
                             name="toDate"
                             type="date"
-                            value={ toDate }
+                            value={toDate}
                             onChange={(e) => onToDateChange(e.target.value)}
                             theme='horizontal'
                         />
@@ -55,7 +55,7 @@ function DashboardPage({
                     <AppButton
                         text="Выйти"
                         theme="secondary"
-                        onClick={ onLogout }
+                        onClick={onLogout}
                     />
                 </div>
             </header>
@@ -64,29 +64,29 @@ function DashboardPage({
                 <div className='dashboard-page__column'>
                     <h2 className="dashboard-page__subtitle">Обзор</h2>
                     <BalanceSummary
-                        total={ total }
-                        expense={ totalExpense }
-                        income={ totalIncome }
+                        total={total}
+                        expense={totalExpense}
+                        income={totalIncome}
                     />
                 </div>
                 
                 <div className='dashboard-page__column'>
                     <h2 className="dashboard-page__subtitle">Добавить</h2>
                     <TransactionForm
-                        categories={ categories }
-                        onAddTransaction={ onAddTransaction }
+                        categories={categories}
+                        onAddTransaction={onAddTransaction}
                     />
                 </div>
 
                 <div className='dashboard-page__column'>
                     <h2 className="dashboard-page__subtitle">История транзакций</h2>
                     <TransactionFilter
-                        typeValue={ filterType }
-                        onChange={ setFilterType }
+                        typeValue={filterType}
+                        onChange={setFilterType}
                     />
                     <TransactionList
-                        transactions={ filteredTransactions }
-                        onDelete={ onDeleteTransaction }
+                        transactions={filteredTransactions}
+                        onDelete={onDeleteTransaction}
                     />
                 </div>
             </div>
