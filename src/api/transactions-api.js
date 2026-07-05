@@ -68,7 +68,7 @@ export const deleteTransaction = async (id) => {
     return result;
 };
 
-export const calculateSummary = (transactions) => {
+const calculateSummary = (transactions) => {
     const income = transactions
             .filter(t => t.type === 'income')
             .reduce((acc, t) => acc + t.amount, 0);

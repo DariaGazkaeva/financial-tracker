@@ -7,8 +7,6 @@ import TransactionFilter from './transaction-filter/TransactionFilter.jsx';
 import AppButton from '../../common/ui/app-button/AppButton.jsx';
 import AppInput from '../../common/ui/app-input/AppInput.jsx';
 
-import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from '../../utils/date-utils.js';
-
 import './dashboard-page.css';
 
 function DashboardPage({
@@ -20,19 +18,16 @@ function DashboardPage({
     categories,
     onAddTransaction,
     onDeleteTransaction,
-    onDateChange,
+    fromDate,
+    toDate,
+    onFromDateChange,
+    onToDateChange,
 }) {
     const [filterType, setFilterType] = useState('all');
-    const [fromDate, setFromDate] = useState(formatDate(getFirstDayOfMonth()));
-    const [toDate, setToDate] = useState(formatDate(getLastDayOfMonth()));
 
     const filteredTransactions = filterType === 'all'
         ? transactions
         : transactions.filter(t => t.type === filterType);
-
-    useEffect(() => {
-        onDateChange({ fromDate, toDate });
-    }, [fromDate, toDate]);
 
     return (
         <div className="dashboard-page">
@@ -45,7 +40,7 @@ function DashboardPage({
                             name="fromDate"
                             type="date"
                             value={ fromDate }
-                            onChange={(e) => setFromDate(e.target.value)}
+                            onChange={(e) => onFromDateChange(e.target.value)}
                             theme='horizontal'
                         />
                         <AppInput
@@ -53,7 +48,7 @@ function DashboardPage({
                             name="toDate"
                             type="date"
                             value={ toDate }
-                            onChange={(e) => setToDate(e.target.value)}
+                            onChange={(e) => onToDateChange(e.target.value)}
                             theme='horizontal'
                         />
                     </div>

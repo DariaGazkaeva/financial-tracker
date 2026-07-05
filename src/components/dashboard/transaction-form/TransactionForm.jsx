@@ -6,6 +6,8 @@ import AppInput from '../../../common/ui/app-input/AppInput';
 import AppSelect from '../../../common/ui/app-select/AppSelect';
 import AppButton from '../../../common/ui/app-button/AppButton';
 
+import { formatDate } from '../../../utils/date-utils.js';
+
 import './transaction-form.css';
 
 function TransactionForm({
@@ -18,6 +20,7 @@ function TransactionForm({
         defaultValues: {
             type: 'expense',
             categoryId: '',
+            date: formatDate(new Date()),
         }
     });
 
