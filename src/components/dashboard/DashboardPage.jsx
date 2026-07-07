@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import BalanceSummary from './balance-summary/BalanceSummary.jsx';
-import TransactionForm from './transaction-form/TransactionForm.jsx';
-import TransactionList from './transaction-list/TransactionList.jsx';
-import TransactionFilter from './transaction-filter/TransactionFilter.jsx';
-import AppButton from '../../common/ui/app-button/AppButton.jsx';
-import AppInput from '../../common/ui/app-input/AppInput.jsx';
+import BalanceSummary from '@/components/dashboard/balance-summary/BalanceSummary.jsx';
+import TransactionForm from '@/components/dashboard/transaction-form/TransactionForm.jsx';
+import TransactionList from '@/components/dashboard/transaction-list/TransactionList.jsx';
+import TransactionFilter from '@/components/dashboard/transaction-filter/TransactionFilter.jsx';
+import AppButton from '@/common/ui/app-button/AppButton.jsx';
+import AppInput from '@/common/ui/app-input/AppInput.jsx';
 
 import './dashboard-page.css';
 

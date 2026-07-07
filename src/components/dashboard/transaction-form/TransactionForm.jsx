@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 
-import AppInput from '../../../common/ui/app-input/AppInput';
-import AppSelect from '../../../common/ui/app-select/AppSelect';
-import AppButton from '../../../common/ui/app-button/AppButton';
+import AppInput from '@/common/ui/app-input/AppInput.jsx';
+import AppSelect from '@/common/ui/app-select/AppSelect.jsx';
+import AppButton from '@/common/ui/app-button/AppButton.jsx';
 
-import { formatDate } from '../../../utils/date-utils.js';
+import { formatDate } from '@/utils/date-utils.js';
 
 import './transaction-form.css';
 

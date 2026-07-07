@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import AuthPage from './components/auth/AuthPage.jsx';
-import DashboardPage from './components/dashboard/DashboardPage.jsx';
+import AuthPage from '@/components/auth/AuthPage.jsx';
+import DashboardPage from '@/components/dashboard/DashboardPage.jsx';
 
 import {
     getTransactions,
