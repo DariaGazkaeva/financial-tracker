@@ -1,4 +1,4 @@
-import { getCategories } from './categories-api.js';
+import { getCategories } from '@app-api/categories-api.js';
 
 // TODO убрать заглушки с localStorage после добавления бэка
 

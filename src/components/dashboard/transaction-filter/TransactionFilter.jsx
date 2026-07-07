@@ -1,4 +1,4 @@
-import AppButton from '@/common/ui/app-button/AppButton.jsx';
+import AppButton from '@app-ui/app-button/AppButton.jsx';
 
 import './transaction-filter.css';
 

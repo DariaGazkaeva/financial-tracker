@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 
-import AuthPage from '@/components/auth/AuthPage.jsx';
-import DashboardPage from '@/components/dashboard/DashboardPage.jsx';
+import AuthPage from '@app-components/auth/AuthPage.jsx';
+import DashboardPage from '@app-components/dashboard/DashboardPage.jsx';
 
 import {
     getTransactions,
     addTransaction,
     deleteTransaction,
     getSummary,
-} from './api/transactions-api.js';
-import { getCategories } from './api/categories-api.js';
+} from '@app-api/transactions-api.js';
+import { getCategories } from '@app-api/categories-api.js';
 
-import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from './utils/date-utils.js';
+import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from '@app-utils/date-utils.js';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(Boolean(localStorage.getItem('token')));
