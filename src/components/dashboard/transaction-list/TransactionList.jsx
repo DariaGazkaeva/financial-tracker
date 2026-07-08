@@ -1,4 +1,4 @@
-import TransactionItem from '@app-components/dashboard/transaction-item/TransactionItem.jsx';
+import TransactionItem from '@app-components/dashboard/transaction-item/TransactionItem.tsx';
 
 import './transaction-list.css';
 

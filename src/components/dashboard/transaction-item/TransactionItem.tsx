@@ -1,11 +1,18 @@
 import clsx from 'clsx';
 
+import { ITransactionResponse } from '@app-api/transactions-api/types.ts';
+
 import './transaction-item.css';
+
+interface TransactionItemProps {
+    transaction: ITransactionResponse,
+    onDelete: (id: number) => {},
+}
 
 function TransactionItem({
     transaction,
     onDelete,
-}) {
+}: TransactionItemProps) {
     const {
         id,
         description,
