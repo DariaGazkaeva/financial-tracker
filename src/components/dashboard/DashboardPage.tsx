@@ -9,7 +9,7 @@ import AppInput from '@app-ui/app-input/AppInput.tsx';
 
 import { ITransactionPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
 import { ICategory } from '@app-api/category-api/types.ts';
-import { FilterTypeValue } from '@app-components/dashboard/types.ts';
+import type { FilterTypeValue } from '@app-components/dashboard/types.ts';
 
 import './dashboard-page.css';
 

@@ -1,7 +1,7 @@
 import AppButton from '@app-ui/app-button/AppButton.tsx';
 
 import { FILTER_TYPE_OPTIONS } from '@app-components/dashboard/consts.ts';
-import { FilterTypeValue } from '@app-components/dashboard/types.ts';
+import type { FilterTypeValue } from '@app-components/dashboard/types.ts';
 
 import './transaction-filter.css';
 
