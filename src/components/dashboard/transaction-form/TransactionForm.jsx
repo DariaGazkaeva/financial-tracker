@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 
 import AppInput from '@app-ui/app-input/AppInput.tsx';
-import AppSelect from '@app-ui/app-select/AppSelect.jsx';
+import AppSelect from '@app-ui/app-select/AppSelect.tsx';
 import AppButton from '@app-ui/app-button/AppButton.tsx';
 
 import { formatDate } from '@app-utils/date-utils.js';

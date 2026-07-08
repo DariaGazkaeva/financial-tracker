@@ -1,8 +1,28 @@
 import clsx from 'clsx';
+import type { Path, UseFormRegister, RegisterOptions, FieldValues } from 'react-hook-form';
 
 import './app-select.css';
 
-function AppSelect({
+interface AppSelectOption {
+    id: number,
+    label: string,
+}
+
+interface AppSelectProps<TFieldValues extends FieldValues> {
+    label: string,
+    name: Path<TFieldValues>,
+    value?: string | number,
+    options?: AppSelectOption[],
+    disabled?: boolean,
+    error?: string,
+    onChange?: React.ChangeEventHandler<HTMLSelectElement>,
+    className?: string,
+    placeholder?: string,
+    register?: UseFormRegister<TFieldValues>,
+    rules?: RegisterOptions<TFieldValues>,
+}
+
+function AppSelect<TFieldValues extends FieldValues = FieldValues>({
     label,
     name,
     value,
@@ -14,7 +34,7 @@ function AppSelect({
     placeholder = 'Выберите...',
     register,
     rules,
-}) {
+}: AppSelectProps<TFieldValues>) {
     const fieldClasses = clsx(
         'app-select__field',
         error && 'app-select__field--error',
