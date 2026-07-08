@@ -7,6 +7,7 @@ import {
 } from '@app-api/transactions-api/types.ts';
 import { getCategories } from '@app-api/category-api/index.ts';
 import { withErrorHandling } from '@app-api/utils.ts';
+import { DEFAULT_SUMMARY } from '@app-api/transactions-api/consts.ts';
 
 // TODO убрать заглушки с localStorage после добавления бэка
 
@@ -68,11 +69,7 @@ export const getSummary = (filters: ITransactionFilter = {}): Promise<ApiRespons
         const transactions = (await getTransactions(filters)).data;
 
         if (!transactions) {
-            return {
-                income: 0,
-                expense: 0,
-                total: 0,
-            };
+            return DEFAULT_SUMMARY;
         }
 
         const income = transactions
