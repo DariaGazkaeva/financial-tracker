@@ -8,15 +8,29 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 
 import { formatDate } from '@app-utils/date-utils.js';
 
+import { ICategory } from '@/api/category-api/types.ts';
+import { ITransactionBase, ITransactionPayload } from '@/api/transactions-api/types.ts';
+
 import './transaction-form.css';
+
+interface TransactionFormType extends ITransactionBase {
+    categoryId: number | '',
+};
+
+type TransactionType = 'income' | 'expense';
+
+interface TransactionFormProps {
+    categories: ICategory[],
+    onAddTransaction: (value: ITransactionPayload) => void,
+}
 
 function TransactionForm({
     categories = [],
     onAddTransaction,
-}) {
-    const [transactionType, setTransactionType] = useState('expense');
+}: TransactionFormProps) {
+    const [transactionType, setTransactionType] = useState<TransactionType>('expense');
 
-    const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm({
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm<TransactionFormType>({
         defaultValues: {
             categoryId: '',
             date: formatDate(new Date()),
@@ -25,16 +39,16 @@ function TransactionForm({
 
     const filteredCategories = categories.filter(category => category.type === transactionType);
 
-    const handleTypeChange = (type) => {
+    const handleTypeChange = (type: TransactionType) => {
         setTransactionType(type);
         setValue('categoryId', '');
     };
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: TransactionFormType) => {
         const newTransaction = {
             description: data.description || '',
-            amount: parseFloat(data.amount),
-            categoryId: data.categoryId,
+            amount: data.amount,
+            categoryId: Number(data.categoryId),
             date: data.date || new Date().toISOString().split('T')[0],
         };
 

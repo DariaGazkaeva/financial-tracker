@@ -5,7 +5,7 @@ export interface ITransactionFilter {
     toDate?: string,
 }
 
-interface ITransactionBase {
+export interface ITransactionBase {
     description?: string,
     amount: number,
     date: string,

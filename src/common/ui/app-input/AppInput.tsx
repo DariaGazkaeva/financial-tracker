@@ -6,7 +6,7 @@ import './app-input.css';
 interface AppInputProps<TFieldValues extends FieldValues = FieldValues> {
     label?: string;
     name: Path<TFieldValues>;
-    type?: 'text' | 'password' | 'number';
+    type?: 'text' | 'password' | 'number' | 'date';
     placeholder?: string;
     value?: string | number;
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
