@@ -5,7 +5,7 @@ import TransactionForm from '@app-components/dashboard/transaction-form/Transact
 import TransactionList from '@app-components/dashboard/transaction-list/TransactionList.jsx';
 import TransactionFilter from '@app-components/dashboard/transaction-filter/TransactionFilter.jsx';
 import AppButton from '@app-ui/app-button/AppButton.tsx';
-import AppInput from '@app-ui/app-input/AppInput.jsx';
+import AppInput from '@app-ui/app-input/AppInput.tsx';
 
 import './dashboard-page.css';
 
