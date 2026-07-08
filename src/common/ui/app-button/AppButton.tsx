@@ -2,7 +2,7 @@ import './app-button.css';
 
 interface AppButtonProps {
     text: string;
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
     theme?: 'primary' | 'secondary';
     disabled?: boolean;
     type?: 'button' | 'submit' | 'reset';
