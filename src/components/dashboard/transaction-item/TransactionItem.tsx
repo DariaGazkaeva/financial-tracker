@@ -6,7 +6,7 @@ import './transaction-item.css';
 
 interface TransactionItemProps {
     transaction: ITransactionResponse,
-    onDelete: (id: number) => {},
+    onDelete: (id: number) => void,
 }
 
 function TransactionItem({

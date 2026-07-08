@@ -6,7 +6,7 @@ import './transaction-list.css';
 
 interface TransactionListProps {
     transactions: ITransactionResponse[],
-    onDelete: (id: number) => {},
+    onDelete: (id: number) => void,
 }
 
 function TransactionList({

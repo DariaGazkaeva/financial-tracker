@@ -7,7 +7,26 @@ import TransactionFilter from '@app-components/dashboard/transaction-filter/Tran
 import AppButton from '@app-ui/app-button/AppButton.tsx';
 import AppInput from '@app-ui/app-input/AppInput.tsx';
 
+import { ITransactionPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
+import { ICategory } from '@app-api/category-api/types.ts';
+import { FilterTypeValue } from '@app-components/dashboard/types.ts';
+
 import './dashboard-page.css';
+
+interface DashboardPageProps {
+    onLogout: () => void,
+    transactions: ITransactionResponse[],
+    total: number,
+    totalExpense: number,
+    totalIncome: number,
+    categories: ICategory[],
+    onAddTransaction: (value: ITransactionPayload) => void,
+    onDeleteTransaction: (id: number) => void,
+    fromDate: string,
+    toDate: string,
+    onFromDateChange: (value: string) => void,
+    onToDateChange: (value: string) => void,
+}
 
 function DashboardPage({
     onLogout,
@@ -15,19 +34,19 @@ function DashboardPage({
     total,
     totalExpense,
     totalIncome,
-    categories,
+    categories = [],
     onAddTransaction,
     onDeleteTransaction,
     fromDate,
     toDate,
     onFromDateChange,
     onToDateChange,
-}) {
-    const [filterType, setFilterType] = useState('all');
+}: DashboardPageProps) {
+    const [filterType, setFilterType] = useState<FilterTypeValue>('all');
 
     const filteredTransactions = filterType === 'all'
         ? transactions
-        : transactions.filter(t => t.type === filterType);
+        : transactions.filter(transaction => transaction.category.type === filterType);
 
     return (
         <div className="dashboard-page">

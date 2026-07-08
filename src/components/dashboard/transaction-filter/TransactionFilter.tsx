@@ -1,24 +1,19 @@
 import AppButton from '@app-ui/app-button/AppButton.tsx';
 
+import { FILTER_TYPE_OPTIONS } from '@app-components/dashboard/consts.ts';
+import { FilterTypeValue } from '@app-components/dashboard/types.ts';
+
 import './transaction-filter.css';
 
-const TYPE_OPTIONS = [
-    { value: 'all', label: 'Все' },
-    { value: 'income', label: 'Доходы' },
-    { value: 'expense', label: 'Расходы' },
-] as const;
-
-type TypeValue = typeof TYPE_OPTIONS[number]['value'];
-
 interface TransactionFilterProps {
-    typeValue: TypeValue,
-    onChange: (value: TypeValue) => {},
+    typeValue: FilterTypeValue,
+    onChange: (value: FilterTypeValue) => void,
 }
 
 function TransactionFilter({ typeValue, onChange }: TransactionFilterProps) {
     return (
         <div className="transaction-filter">
-            {TYPE_OPTIONS.map(option => (
+            {FILTER_TYPE_OPTIONS.map(option => (
                 <AppButton
                     key={option.value}
                     text={option.label}
