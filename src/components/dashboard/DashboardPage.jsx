@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import BalanceSummary from '@app-components/dashboard/balance-summary/BalanceSummary.jsx';
+import BalanceSummary from '@app-components/dashboard/balance-summary/BalanceSummary.tsx';
 import TransactionForm from '@app-components/dashboard/transaction-form/TransactionForm.jsx';
 import TransactionList from '@app-components/dashboard/transaction-list/TransactionList.jsx';
 import TransactionFilter from '@app-components/dashboard/transaction-filter/TransactionFilter.jsx';
