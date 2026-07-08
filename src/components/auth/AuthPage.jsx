@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import AppButton from '@app-ui/app-button/AppButton.jsx';
+import AppButton from '@app-ui/app-button/AppButton.tsx';
 import AppInput from '@app-ui/app-input/AppInput.jsx';
 
 import './auth-page.css';

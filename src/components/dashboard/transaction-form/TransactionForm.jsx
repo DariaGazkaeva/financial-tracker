@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import AppInput from '@app-ui/app-input/AppInput.jsx';
 import AppSelect from '@app-ui/app-select/AppSelect.jsx';
-import AppButton from '@app-ui/app-button/AppButton.jsx';
+import AppButton from '@app-ui/app-button/AppButton.tsx';
 
 import { formatDate } from '@app-utils/date-utils.js';
 
