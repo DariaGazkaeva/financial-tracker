@@ -6,9 +6,18 @@ import AppInput from '@app-ui/app-input/AppInput.tsx';
 
 import './auth-page.css';
 
-function AuthPage({ onLogin }) {
+interface AuthFormValues {
+    login: string;
+    password: string;
+}
+
+interface AuthPageProps {
+    onLogin: () => void;
+}
+
+function AuthPage({ onLogin }: AuthPageProps) {
     const [isLogin, setIsLogin] = useState(true);
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<AuthFormValues>();
 
     // TODO запрос на бэк
     const onSubmit = async () => {
@@ -57,7 +66,6 @@ function AuthPage({ onLogin }) {
                         type="submit"
                         theme="primary"
                         disabled={isSubmitting}
-                        className="auth-page__button"
                     />
                     <p className="auth-page__toggle-text">
                         { isLogin ? 'Нет аккаунта?' : 'Уже есть аккаунт?' }

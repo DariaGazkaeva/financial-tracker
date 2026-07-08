@@ -14,10 +14,6 @@
     @apply flex flex-col gap-4;
 }
 
-.auth-page__button {
-    @apply w-full mt-2;
-}
-
 .auth-page__toggle-text {
     @apply text-center text-sm text-gray-600 mt-4;
 }

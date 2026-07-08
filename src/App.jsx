@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import AuthPage from '@app-components/auth/AuthPage.jsx';
+import AuthPage from '@app-components/auth/AuthPage.tsx';
 import DashboardPage from '@app-components/dashboard/DashboardPage.jsx';
 
 import {
