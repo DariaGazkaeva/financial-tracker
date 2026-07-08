@@ -18,7 +18,6 @@ function TransactionForm({
 
     const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm({
         defaultValues: {
-            type: 'expense',
             categoryId: '',
             date: formatDate(new Date()),
         }
@@ -36,7 +35,6 @@ function TransactionForm({
             description: data.description || '',
             amount: parseFloat(data.amount),
             categoryId: data.categoryId,
-            type: transactionType,
             date: data.date || new Date().toISOString().split('T')[0],
         };
 

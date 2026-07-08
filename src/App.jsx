@@ -8,8 +8,8 @@ import {
     addTransaction,
     deleteTransaction,
     getSummary,
-} from '@app-api/transactions-api.js';
-import { getCategories } from '@app-api/categories-api.js';
+} from '@app-api/transactions-api/index.ts';
+import { getCategories } from '@app-api/category-api/index.ts';
 
 import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from '@app-utils/date-utils.js';
 

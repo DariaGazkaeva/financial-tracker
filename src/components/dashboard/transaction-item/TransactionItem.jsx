@@ -12,10 +12,9 @@ function TransactionItem({
         amount,
         category,
         date,
-        type,
     } = transaction;
 
-    const isIncome = type === 'income';
+    const isIncome = category.type === 'income';
     const formattedAmount = (isIncome ? '+' : '-') + amount;
 
     const amountClasses = clsx(
@@ -26,7 +25,7 @@ function TransactionItem({
     return (
         <li className="transaction-item">
             <div className="transaction-item__info transaction-item__info--col">
-                <span className="transaction-item__category">{ category }</span>
+                <span className="transaction-item__category">{ category.label }</span>
                 <span className="transaction-item__description">{ description }</span>
             </div>
 
