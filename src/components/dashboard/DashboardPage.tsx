@@ -13,7 +13,7 @@ import { FilterTypeValue } from '@app-components/dashboard/types.ts';
 
 import './dashboard-page.css';
 
-interface DashboardPageProps {
+interface IDashboardPageProps {
     onLogout: () => void,
     transactions: ITransactionResponse[],
     total: number,
@@ -41,7 +41,7 @@ function DashboardPage({
     toDate,
     onFromDateChange,
     onToDateChange,
-}: DashboardPageProps) {
+}: IDashboardPageProps) {
     const [filterType, setFilterType] = useState<FilterTypeValue>('all');
 
     const filteredTransactions = filterType === 'all'

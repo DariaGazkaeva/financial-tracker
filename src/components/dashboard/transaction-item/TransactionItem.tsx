@@ -4,7 +4,7 @@ import { ITransactionResponse } from '@app-api/transactions-api/types.ts';
 
 import './transaction-item.css';
 
-interface TransactionItemProps {
+interface ITransactionItemProps {
     transaction: ITransactionResponse,
     onDelete: (id: number) => void,
 }
@@ -12,7 +12,7 @@ interface TransactionItemProps {
 function TransactionItem({
     transaction,
     onDelete,
-}: TransactionItemProps) {
+}: ITransactionItemProps) {
     const {
         id,
         description,

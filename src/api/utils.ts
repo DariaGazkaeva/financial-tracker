@@ -1,4 +1,4 @@
-import { ApiResponse } from '@app-api/types.ts';
+import { IApiResponse } from '@app-api/types.ts';
 
 const getErrorMessage = (error: unknown): string => {
     if (error instanceof Error) {
@@ -16,7 +16,7 @@ const getErrorMessage = (error: unknown): string => {
     }
 };
 
-export const withErrorHandling = async <T>(operation: () => Promise<T>): Promise<ApiResponse<T>> => {
+export const withErrorHandling = async <T>(operation: () => Promise<T>): Promise<IApiResponse<T>> => {
     try {
         return {
             data: await operation(),

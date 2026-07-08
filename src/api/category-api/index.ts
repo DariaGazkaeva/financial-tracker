@@ -1,9 +1,9 @@
-import { ApiResponse } from '@app-api/types.ts';
+import { IApiResponse } from '@app-api/types.ts';
 import { ICategory } from '@app-api/category-api/types.ts';
 
 // TODO убрать заглушки после добавления бэка
 
-export const getCategories = async (): Promise<ApiResponse<ICategory[]>> => {
+export const getCategories = async (): Promise<IApiResponse<ICategory[]>> => {
     const categories: ICategory[] = [
         { id: 1, label: 'Еда', type: 'expense' },
         { id: 2, label: 'Транспорт', type: 'expense' },

@@ -3,16 +3,16 @@ import type { Path, UseFormRegister, RegisterOptions, FieldValues } from 'react-
 
 import './app-select.css';
 
-interface AppSelectOption {
+interface IAppSelectOption {
     id: number,
     label: string,
 }
 
-interface AppSelectProps<TFieldValues extends FieldValues> {
+interface IAppSelectProps<TFieldValues extends FieldValues> {
     label: string,
     name: Path<TFieldValues>,
     value?: string | number,
-    options?: AppSelectOption[],
+    options?: IAppSelectOption[],
     disabled?: boolean,
     error?: string,
     onChange?: React.ChangeEventHandler<HTMLSelectElement>,
@@ -34,7 +34,7 @@ function AppSelect<TFieldValues extends FieldValues = FieldValues>({
     placeholder = 'Выберите...',
     register,
     rules,
-}: AppSelectProps<TFieldValues>) {
+}: IAppSelectProps<TFieldValues>) {
     const fieldClasses = clsx(
         'app-select__field',
         error && 'app-select__field--error',

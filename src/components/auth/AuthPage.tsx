@@ -6,18 +6,18 @@ import AppInput from '@app-ui/app-input/AppInput.tsx';
 
 import './auth-page.css';
 
-interface AuthFormValues {
+interface IAuthFormValues {
     login: string;
     password: string;
 }
 
-interface AuthPageProps {
+interface IAuthPageProps {
     onLogin: () => void;
 }
 
-function AuthPage({ onLogin }: AuthPageProps) {
+function AuthPage({ onLogin }: IAuthPageProps) {
     const [isLogin, setIsLogin] = useState(true);
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<AuthFormValues>();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<IAuthFormValues>();
 
     // TODO запрос на бэк
     const onSubmit = async () => {

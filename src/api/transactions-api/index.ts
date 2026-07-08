@@ -1,4 +1,4 @@
-import { ApiResponse } from '@app-api/types.ts';
+import { IApiResponse } from '@app-api/types.ts';
 import {
     ISummaryResponse,
     ITransactionFilter,
@@ -22,7 +22,7 @@ const saveTransactions = (transactions: ITransactionResponse[]): void => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
 };
 
-export const getTransactions = (filters: ITransactionFilter = {}): Promise<ApiResponse<ITransactionResponse[]>> =>
+export const getTransactions = (filters: ITransactionFilter = {}): Promise<IApiResponse<ITransactionResponse[]>> =>
     withErrorHandling(async () => {
         const transactions = loadTransactions();
 
@@ -33,7 +33,7 @@ export const getTransactions = (filters: ITransactionFilter = {}): Promise<ApiRe
         });
     });
 
-export const addTransaction = (transaction: ITransactionPayload): Promise<ApiResponse<ITransactionResponse>> =>
+export const addTransaction = (transaction: ITransactionPayload): Promise<IApiResponse<ITransactionResponse>> =>
     withErrorHandling(async () => {
         const { categoryId, ...transactionDetails } = transaction;
 
@@ -56,7 +56,7 @@ export const addTransaction = (transaction: ITransactionPayload): Promise<ApiRes
         return newTransaction;
   });
 
-export const deleteTransaction = (id: number): Promise<ApiResponse<number>> =>
+export const deleteTransaction = (id: number): Promise<IApiResponse<number>> =>
     withErrorHandling(async () => {
         const transactions = loadTransactions();
         const updated = transactions.filter((t) => t.id !== id);
@@ -64,7 +64,7 @@ export const deleteTransaction = (id: number): Promise<ApiResponse<number>> =>
         return id;
     });
 
-export const getSummary = (filters: ITransactionFilter = {}): Promise<ApiResponse<ISummaryResponse>> =>
+export const getSummary = (filters: ITransactionFilter = {}): Promise<IApiResponse<ISummaryResponse>> =>
     withErrorHandling(async () => {
         const transactions = (await getTransactions(filters)).data;
 

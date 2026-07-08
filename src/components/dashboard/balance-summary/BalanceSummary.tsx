@@ -1,6 +1,6 @@
 import './balance-summary.css';
 
-interface BalanceSummaryProps {
+interface IBalanceSummaryProps {
     total: number,
     income: number,
     expense: number,
@@ -10,7 +10,7 @@ function BalanceSummary({
     total = 0,
     income = 0,
     expense = 0,
-}: BalanceSummaryProps) {
+}: IBalanceSummaryProps) {
     return (
         <div className="balance-summary">
             <div className="balance-summary__card">

@@ -5,12 +5,12 @@ import { FilterTypeValue } from '@app-components/dashboard/types.ts';
 
 import './transaction-filter.css';
 
-interface TransactionFilterProps {
+interface ITransactionFilterProps {
     typeValue: FilterTypeValue,
     onChange: (value: FilterTypeValue) => void,
 }
 
-function TransactionFilter({ typeValue, onChange }: TransactionFilterProps) {
+function TransactionFilter({ typeValue, onChange }: ITransactionFilterProps) {
     return (
         <div className="transaction-filter">
             {FILTER_TYPE_OPTIONS.map(option => (

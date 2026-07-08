@@ -3,7 +3,7 @@ import type { Path, UseFormRegister, RegisterOptions, FieldValues } from 'react-
 
 import './app-input.css';
 
-interface AppInputProps<TFieldValues extends FieldValues = FieldValues> {
+interface IAppInputProps<TFieldValues extends FieldValues = FieldValues> {
     label?: string;
     name: Path<TFieldValues>;
     type?: 'text' | 'password' | 'number' | 'date';
@@ -31,7 +31,7 @@ function AppInput<TFieldValues extends FieldValues = FieldValues>({
     rules,
     className = '',
     theme = 'vertical',
-}: AppInputProps<TFieldValues>) {
+}: IAppInputProps<TFieldValues>) {
     return (
         <div className={`app-input app-input--${theme}`}>
             {label && (

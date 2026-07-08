@@ -4,7 +4,7 @@ import { ITransactionResponse } from '@/api/transactions-api/types.ts';
 
 import './transaction-list.css';
 
-interface TransactionListProps {
+interface ITransactionListProps {
     transactions: ITransactionResponse[],
     onDelete: (id: number) => void,
 }
@@ -12,7 +12,7 @@ interface TransactionListProps {
 function TransactionList({
     transactions = [],
     onDelete,
-}: TransactionListProps) {
+}: ITransactionListProps) {
     if (transactions.length === 0) {
         return (
             <div className="transaction-list">

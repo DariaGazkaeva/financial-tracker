@@ -13,13 +13,13 @@ import { ITransactionBase, ITransactionPayload } from '@/api/transactions-api/ty
 
 import './transaction-form.css';
 
-interface TransactionFormType extends ITransactionBase {
+interface ITransactionFormType extends ITransactionBase {
     categoryId: number | '',
 };
 
 type TransactionType = 'income' | 'expense';
 
-interface TransactionFormProps {
+interface ITransactionFormProps {
     categories: ICategory[],
     onAddTransaction: (value: ITransactionPayload) => void,
 }
@@ -27,10 +27,10 @@ interface TransactionFormProps {
 function TransactionForm({
     categories = [],
     onAddTransaction,
-}: TransactionFormProps) {
+}: ITransactionFormProps) {
     const [transactionType, setTransactionType] = useState<TransactionType>('expense');
 
-    const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm<TransactionFormType>({
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm<ITransactionFormType>({
         defaultValues: {
             categoryId: '',
             date: formatDate(new Date()),
@@ -44,7 +44,7 @@ function TransactionForm({
         setValue('categoryId', '');
     };
 
-    const onSubmit = (data: TransactionFormType) => {
+    const onSubmit = (data: ITransactionFormType) => {
         const newTransaction = {
             description: data.description || '',
             amount: data.amount,
