@@ -1,8 +1,24 @@
 import clsx from 'clsx';
+import type { Path, UseFormRegister, RegisterOptions, FieldValues } from 'react-hook-form';
 
 import './app-input.css';
 
-function AppInput({
+interface IAppInputProps<TFieldValues extends FieldValues = FieldValues> {
+    label?: string;
+    name: Path<TFieldValues>;
+    type?: 'text' | 'password' | 'number' | 'date';
+    placeholder?: string;
+    value?: string | number;
+    onChange?: React.ChangeEventHandler<HTMLInputElement>;
+    error?: string;
+    disabled?: boolean;
+    register?: UseFormRegister<TFieldValues>;
+    rules?: RegisterOptions<TFieldValues>;
+    className?: string;
+    theme?: 'vertical' | 'horizontal';
+}
+
+function AppInput<TFieldValues extends FieldValues = FieldValues>({
     label,
     name,
     type = 'text',
@@ -15,7 +31,7 @@ function AppInput({
     rules,
     className = '',
     theme = 'vertical',
-}) {
+}: IAppInputProps<TFieldValues>) {
     return (
         <div className={`app-input app-input--${theme}`}>
             {label && (

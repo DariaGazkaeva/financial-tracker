@@ -1,14 +1,23 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import AppButton from '@app-ui/app-button/AppButton.jsx';
-import AppInput from '@app-ui/app-input/AppInput.jsx';
+import AppButton from '@app-ui/app-button/AppButton.tsx';
+import AppInput from '@app-ui/app-input/AppInput.tsx';
 
 import './auth-page.css';
 
-function AuthPage({ onLogin }) {
+interface IAuthFormValues {
+    login: string;
+    password: string;
+}
+
+interface IAuthPageProps {
+    onLogin: () => void;
+}
+
+function AuthPage({ onLogin }: IAuthPageProps) {
     const [isLogin, setIsLogin] = useState(true);
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<IAuthFormValues>();
 
     // TODO запрос на бэк
     const onSubmit = async () => {
@@ -57,7 +66,6 @@ function AuthPage({ onLogin }) {
                         type="submit"
                         theme="primary"
                         disabled={isSubmitting}
-                        className="auth-page__button"
                     />
                     <p className="auth-page__toggle-text">
                         { isLogin ? 'Нет аккаунта?' : 'Уже есть аккаунт?' }

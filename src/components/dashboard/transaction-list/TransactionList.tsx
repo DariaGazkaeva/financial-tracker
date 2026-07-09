@@ -1,11 +1,18 @@
-import TransactionItem from '@app-components/dashboard/transaction-item/TransactionItem.jsx';
+import TransactionItem from '@app-components/dashboard/transaction-item/TransactionItem.tsx';
+
+import { ITransactionResponse } from '@/api/transactions-api/types.ts';
 
 import './transaction-list.css';
+
+interface ITransactionListProps {
+    transactions: ITransactionResponse[],
+    onDelete: (id: number) => void,
+}
 
 function TransactionList({
     transactions = [],
     onDelete,
-}) {
+}: ITransactionListProps) {
     if (transactions.length === 0) {
         return (
             <div className="transaction-list">

@@ -2,23 +2,35 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 
-import AppInput from '@app-ui/app-input/AppInput.jsx';
-import AppSelect from '@app-ui/app-select/AppSelect.jsx';
-import AppButton from '@app-ui/app-button/AppButton.jsx';
+import AppInput from '@app-ui/app-input/AppInput.tsx';
+import AppSelect from '@app-ui/app-select/AppSelect.tsx';
+import AppButton from '@app-ui/app-button/AppButton.tsx';
 
 import { formatDate } from '@app-utils/date-utils.js';
 
+import { ICategory } from '@app-api/category-api/types.ts';
+import type { CategoryType } from '@app-api/category-api/types.ts';
+import { ITransactionBase, ITransactionPayload } from '@app-api/transactions-api/types.ts';
+
 import './transaction-form.css';
+
+interface ITransactionFormType extends ITransactionBase {
+    categoryId: number | '',
+};
+
+interface ITransactionFormProps {
+    categories: ICategory[],
+    onAddTransaction: (value: ITransactionPayload) => void,
+}
 
 function TransactionForm({
     categories = [],
     onAddTransaction,
-}) {
-    const [transactionType, setTransactionType] = useState('expense');
+}: ITransactionFormProps) {
+    const [transactionType, setTransactionType] = useState<CategoryType>('expense');
 
-    const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm({
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm<ITransactionFormType>({
         defaultValues: {
-            type: 'expense',
             categoryId: '',
             date: formatDate(new Date()),
         }
@@ -26,17 +38,16 @@ function TransactionForm({
 
     const filteredCategories = categories.filter(category => category.type === transactionType);
 
-    const handleTypeChange = (type) => {
+    const handleTypeChange = (type: CategoryType) => {
         setTransactionType(type);
         setValue('categoryId', '');
     };
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: ITransactionFormType) => {
         const newTransaction = {
             description: data.description || '',
-            amount: parseFloat(data.amount),
-            categoryId: data.categoryId,
-            type: transactionType,
+            amount: Number(data.amount),
+            categoryId: Number(data.categoryId),
             date: data.date || new Date().toISOString().split('T')[0],
         };
 

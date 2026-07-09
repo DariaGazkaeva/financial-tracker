@@ -1,13 +1,21 @@
 import './app-button.css';
 
+interface IAppButtonProps {
+    text: string;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    theme?: 'primary' | 'secondary';
+    disabled?: boolean;
+    type?: 'button' | 'submit' | 'reset';
+}
+
 function AppButton({
     text,
     onClick,
     theme = 'primary',
     disabled = false,
     type = 'button',
-}) {
-    const baseClass = 'app-button--' + theme;
+}: IAppButtonProps) {
+    const baseClass = `app-button--${theme}`;
 
     return (
         <button

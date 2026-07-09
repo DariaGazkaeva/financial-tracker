@@ -1,0 +1,22 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+        "target": "ES2020",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "paths": {
+            "@/*": ["./src/*"],
+            "@app-api/*": ["./src/api/*"],
+            "@app-components/*": ["./src/components/*"],
+            "@app-ui/*": ["./src/common/ui/*"],
+            "@app-utils/*": ["./src/utils/*"],
+        },
+        "strict": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "allowImportingTsExtensions": true,
+    },
+}
