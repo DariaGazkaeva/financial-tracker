@@ -46,7 +46,7 @@ function TransactionForm({
     const onSubmit = (data: ITransactionFormType) => {
         const newTransaction = {
             description: data.description || '',
-            amount: data.amount,
+            amount: Number(data.amount),
             categoryId: Number(data.categoryId),
             date: data.date || new Date().toISOString().split('T')[0],
         };
