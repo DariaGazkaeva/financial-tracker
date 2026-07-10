@@ -12,5 +12,13 @@ export default defineConfig({
             '@app-ui': path.resolve(__dirname, './src/common/ui'),
             '@app-utils': path.resolve(__dirname, './src/utils'),
         }
+    },
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:5000',
+                changeOrigin: true,
+            }
+        }
     }
 });

@@ -1,19 +1,14 @@
 import { IApiResponse } from '@app-api/types.ts';
 import { ICategory } from '@app-api/category-api/types.ts';
+import { withErrorHandling } from '@app-api/utils.ts';
 
-// TODO убрать заглушки после добавления бэка
+export const getCategories = async (): Promise<IApiResponse<ICategory[]>> =>
+    withErrorHandling(async () => {
+        const response = await fetch('/api/categories');
 
-export const getCategories = async (): Promise<IApiResponse<ICategory[]>> => {
-    const categories: ICategory[] = [
-        { id: 1, label: 'Еда', type: 'expense' },
-        { id: 2, label: 'Транспорт', type: 'expense' },
-        { id: 3, label: 'Развлечения', type: 'expense' },
-        { id: 4, label: 'Зарплата', type: 'income' },
-        { id: 5, label: 'Фриланс', type: 'income' },
-    ];
-
-    return {
-        data: categories,
-        error: null,
-    };
-};
+        if (!response.ok) {
+            throw new Error(`Ошибка: ${response.status}`);
+        }
+        
+        return await response.json();
+    });
