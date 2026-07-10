@@ -7,6 +7,8 @@ https://financial-tracker-green.vercel.app/
 - Tailwind CSS
 - React Hook Form
 - ESLint
+- TypeScript
+- Express.js - серверная часть разрабатывается в ветке `feature/express-server`
 
 ## Описание функционала
 Приложение представляет собой личный финансовый трекер для учёта доходов и расходов.
