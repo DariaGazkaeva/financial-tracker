@@ -30,7 +30,7 @@ export const getTransactions = (filters: ITransactionFilter = {}): Promise<IApiR
             const matchFrom = !filters.fromDate || t.date >= filters.fromDate;
             const matchTo = !filters.toDate || t.date <= filters.toDate;
             return matchFrom && matchTo;
-        });
+        }).sort((a, b) => b.date.localeCompare(a.date));
     });
 
 export const addTransaction = (transaction: ITransactionPayload): Promise<IApiResponse<ITransactionResponse>> =>
