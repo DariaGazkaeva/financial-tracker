@@ -1,5 +1,5 @@
 import { IApiResponse } from '@app-api/types.ts';
-import { ICategory } from '@app-api/category-api/types.ts';
+import { ICategory } from '@app-types/category.ts';
 
 // TODO убрать заглушки после добавления бэка
 

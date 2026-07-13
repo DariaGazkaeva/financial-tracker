@@ -16,7 +16,7 @@ import { DEFAULT_SUMMARY } from './api/transactions-api/consts.ts';
 
 import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from '@app-utils/date-utils.ts';
 
-import { ICategory } from './api/category-api/types.ts';
+import { ICategory } from '@app-types/category.ts';
 import {
     ISummaryResponse,
     ITransactionPayload,

@@ -1,4 +1,4 @@
-import { ICategory } from '@app-api/category-api/types.ts';
+import { ICategory } from '@app-types/category.ts';
 
 export interface ITransactionFilter {
     fromDate?: string,
