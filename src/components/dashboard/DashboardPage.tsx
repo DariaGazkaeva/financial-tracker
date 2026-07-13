@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
+import { MdAdd } from 'react-icons/md';
 import BalanceSummary from '@app-components/dashboard/balance-summary/BalanceSummary.tsx';
 import TransactionForm from '@app-components/dashboard/transaction-form/TransactionForm.tsx';
 import TransactionList from '@app-components/dashboard/transaction-list/TransactionList.tsx';
 import TransactionFilter from '@app-components/dashboard/transaction-filter/TransactionFilter.tsx';
 import AppButton from '@app-ui/app-button/AppButton.tsx';
 import AppInput from '@app-ui/app-input/AppInput.tsx';
+import AppModal from '@app-ui/app-modal/AppModal.tsx';
 
 import { ITransactionPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
 import { ICategory } from '@app-api/category-api/types.ts';
@@ -43,6 +45,7 @@ function DashboardPage({
     onToDateChange,
 }: IDashboardPageProps) {
     const [filterType, setFilterType] = useState<FilterTypeValue>('all');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const filteredTransactions = filterType === 'all'
         ? transactions
@@ -80,24 +83,24 @@ function DashboardPage({
             </header>
 
             <div className="dashboard-page__main">
-                <div className='dashboard-page__column'>
+                <div className='dashboard-page__column dashboard-page__column--left'>
                     <h2 className="dashboard-page__subtitle">Обзор</h2>
                     <BalanceSummary
                         total={total}
                         expense={totalExpense}
                         income={totalIncome}
                     />
-                </div>
-                
-                <div className='dashboard-page__column'>
-                    <h2 className="dashboard-page__subtitle">Добавить</h2>
-                    <TransactionForm
-                        categories={categories}
-                        onAddTransaction={onAddTransaction}
-                    />
+                    <AppButton
+                        className="dashboard-page__add-button"
+                        theme='primary'
+                        title="Добавить транзакцию"
+                        onClick={() => setIsModalOpen(true)}
+                    >
+                        <MdAdd size={24} />
+                    </AppButton>
                 </div>
 
-                <div className='dashboard-page__column'>
+                <div className='dashboard-page__column dashboard-page__column--right'>
                     <h2 className="dashboard-page__subtitle">История транзакций</h2>
                     <TransactionFilter
                         typeValue={filterType}
@@ -109,6 +112,16 @@ function DashboardPage({
                     />
                 </div>
             </div>
+
+            <AppModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            >
+                <TransactionForm
+                    categories={categories}
+                    onAddTransaction={onAddTransaction}
+                />
+            </AppModal>
         </div>
     );
 }

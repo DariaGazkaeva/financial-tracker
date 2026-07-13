@@ -19,7 +19,7 @@
 }
 
 .dashboard-page__main {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  @apply flex flex-col gap-6 md:flex-row;
 }
 
 .dashboard-page__main .balance-summary {
@@ -27,13 +27,25 @@
 }
 
 .dashboard-page__main .transaction-list {
-    @apply max-h-[80vh] overflow-auto;
+    @apply max-h-[70vh] overflow-auto;
 }
 
 .dashboard-page__column {
-    @apply flex flex-col gap-2;
+    @apply flex flex-col gap-2 w-full;
+}
+
+.dashboard-page__column--left {
+    @apply flex-1;
+}
+
+.dashboard-page__column--right {
+    @apply flex-[2];
 }
 
 .dashboard-page__subtitle {
     @apply text-lg font-medium pb-2 text-gray-600 border-b border-gray-300;
+}
+
+.dashboard-page__add-button {
+    @apply w-14 h-14 rounded-full flex items-center justify-center self-center;
 }

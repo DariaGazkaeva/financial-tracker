@@ -1,5 +1,5 @@
 .transaction-form {
-    @apply flex flex-col gap-4 p-4 rounded-lg shadow-md bg-white;
+    @apply flex flex-col gap-4 p-4 rounded-lg bg-white;
 }
 
 .transaction-form__fields {
