@@ -10,7 +10,7 @@
             "@/*": ["./src/*"],
             "@app-api/*": ["./src/api/*"],
             "@app-components/*": ["./src/components/*"],
-            "@app-ui/*": ["./src/common/ui/*"],
+            "@app-ui/*": ["./src/ui/*"],
             "@app-utils/*": ["./src/utils/*"],
         },
         "strict": true,
