@@ -151,7 +151,7 @@ function TransactionForm({
 
             <div className="transaction-form__actions">
                 <AppButton
-                    text={isSubmitting ? 'Добавление...' : 'Добавить'}
+                    text={isSubmitting ? 'Сохранение...' : 'Сохранить'}
                     type="submit"
                     theme="primary"
                     disabled={isSubmitting}
