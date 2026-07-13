@@ -8,7 +8,7 @@ import {
 } from '@app-api/transactions-api/types.ts';
 import { getCategories } from '@app-api/category-api/index.ts';
 import { withErrorHandling } from '@app-api/utils.ts';
-import { DEFAULT_SUMMARY } from '@app-api/transactions-api/consts.ts';
+import { DEFAULT_SUMMARY } from '@app-consts/index.ts';
 
 // TODO убрать заглушки с localStorage после добавления бэка
 

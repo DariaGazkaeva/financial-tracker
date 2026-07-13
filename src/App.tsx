@@ -12,7 +12,7 @@ import {
 } from '@app-api/transactions-api/index.ts';
 import { getCategories } from '@app-api/category-api/index.ts';
 
-import { DEFAULT_SUMMARY } from './api/transactions-api/consts.ts';
+import { DEFAULT_SUMMARY } from '@app-consts/index.ts';
 
 import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from '@app-utils/date-utils.ts';
 
