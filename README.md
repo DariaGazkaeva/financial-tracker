@@ -39,6 +39,6 @@ npm install
 npm run dev
 ```
 ## Скриншоты
-| Авторизация | Дашборд | Добавление / Редактирвоание |
+| Авторизация | Дашборд | Добавление / Редактирование |
 |-------------|---------|------------|
 | <img width="1919" height="1019" alt="image" src="https://github.com/user-attachments/assets/7c701bfe-7da2-483b-90ce-05d2d82a5625" /> | <img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/ea404aec-b685-4fac-b27f-db40400f167b" /> | <img width="1919" height="1019" alt="image" src="https://github.com/user-attachments/assets/467b0fcb-74e9-400c-b1b2-5c86cecabbf7" /> |
