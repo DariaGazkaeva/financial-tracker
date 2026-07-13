@@ -1,6 +1,6 @@
 import { IApiResponse } from '@app-api/types.ts';
 import {
-    ISummaryResponse,
+    ISummary,
     ITransactionFilter,
     ITransactionPayload,
     ITransactionEditPayload,
@@ -94,7 +94,7 @@ export const deleteTransaction = (id: number): Promise<IApiResponse<number>> =>
         return id;
     });
 
-export const getSummary = (filters: ITransactionFilter = {}): Promise<IApiResponse<ISummaryResponse>> =>
+export const getSummary = (filters: ITransactionFilter = {}): Promise<IApiResponse<ISummary>> =>
     withErrorHandling(async () => {
         const transactions = (await getTransactions(filters)).data;
 

@@ -18,7 +18,7 @@ import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from '@app-utils/da
 
 import { ICategory } from '@app-types/category.ts';
 import {
-    ISummaryResponse,
+    ISummary,
     ITransactionPayload,
     ITransactionEditPayload,
     ITransactionResponse,
@@ -27,7 +27,7 @@ import {
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(Boolean(localStorage.getItem('token')));
     const [transactions, setTransactions] = useState<ITransactionResponse[]>([]);
-    const [summary, setSummary] = useState<ISummaryResponse>(DEFAULT_SUMMARY);
+    const [summary, setSummary] = useState<ISummary>(DEFAULT_SUMMARY);
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [fromDate, setFromDate] = useState<string>(formatDate(getFirstDayOfMonth()));
     const [toDate, setToDate] = useState<string>(formatDate(getLastDayOfMonth()));
