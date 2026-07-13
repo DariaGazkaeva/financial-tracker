@@ -1,0 +1,11 @@
+.app-modal__overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center;
+}
+
+.app-modal__content {
+    @apply bg-white rounded-lg p-6 max-w-lg w-full relative;
+}
+
+.app-modal__close-button {
+    @apply absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer;
+}
