@@ -38,6 +38,14 @@
     @apply text-sm text-gray-400;
 }
 
-.transaction-item__delete-btn {
-    @apply text-gray-400 hover:text-red-500 transition-colors;
+.transaction-item__button {
+    @apply transition-colors cursor-pointer;
+}
+
+.transaction-item__button--edit {
+    @apply text-gray-400 hover:text-blue-500;
+}
+
+.transaction-item__button--delete {
+    @apply text-gray-400 hover:text-red-500;
 }

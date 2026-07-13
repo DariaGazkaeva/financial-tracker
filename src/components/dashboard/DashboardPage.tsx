@@ -9,7 +9,7 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 import AppInput from '@app-ui/app-input/AppInput.tsx';
 import AppModal from '@app-ui/app-modal/AppModal.tsx';
 
-import { ITransactionPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
+import { ITransactionPayload, ITransactionEditPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
 import { ICategory } from '@app-api/category-api/types.ts';
 import type { FilterTypeValue } from '@app-components/dashboard/types.ts';
 
@@ -23,6 +23,7 @@ interface IDashboardPageProps {
     totalIncome: number,
     categories: ICategory[],
     onAddTransaction: (value: ITransactionPayload) => void,
+    onEditTransaction: (value: ITransactionEditPayload) => void,
     onDeleteTransaction: (id: number) => void,
     fromDate: string,
     toDate: string,
@@ -38,6 +39,7 @@ function DashboardPage({
     totalIncome,
     categories = [],
     onAddTransaction,
+    onEditTransaction,
     onDeleteTransaction,
     fromDate,
     toDate,
@@ -46,10 +48,26 @@ function DashboardPage({
 }: IDashboardPageProps) {
     const [filterType, setFilterType] = useState<FilterTypeValue>('all');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editableTransaction, setEditableTransaction] = useState<ITransactionResponse | null>(null);
 
     const filteredTransactions = filterType === 'all'
         ? transactions
         : transactions.filter(transaction => transaction.category.type === filterType);
+
+    const onEditTransactionClick = (transaction: ITransactionResponse) => {
+        setIsModalOpen(true);
+        setEditableTransaction(transaction);
+    };
+
+    const onTransactionFormSubmit = (transaction: ITransactionEditPayload) => {
+        if (editableTransaction) {
+            onEditTransaction(transaction);
+            setIsModalOpen(false);
+            setEditableTransaction(null);
+        } else {
+            onAddTransaction(transaction);
+        }
+    }
 
     return (
         <div className="dashboard-page">
@@ -108,6 +126,7 @@ function DashboardPage({
                     />
                     <TransactionList
                         transactions={filteredTransactions}
+                        onEdit={onEditTransactionClick}
                         onDelete={onDeleteTransaction}
                     />
                 </div>
@@ -119,7 +138,8 @@ function DashboardPage({
             >
                 <TransactionForm
                     categories={categories}
-                    onAddTransaction={onAddTransaction}
+                    onSubmit={onTransactionFormSubmit}
+                    editableTransaction={editableTransaction}
                 />
             </AppModal>
         </div>

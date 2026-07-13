@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 
+import { MdEdit, MdClose } from 'react-icons/md';
+
 import { ITransactionResponse } from '@app-api/transactions-api/types.ts';
 
 import './transaction-item.css';
@@ -7,11 +9,13 @@ import './transaction-item.css';
 interface ITransactionItemProps {
     transaction: ITransactionResponse,
     onDelete: (id: number) => void,
+    onEdit: (transaction: ITransactionResponse) => void,
 }
 
 function TransactionItem({
     transaction,
     onDelete,
+    onEdit,
 }: ITransactionItemProps) {
     const {
         id,
@@ -40,11 +44,17 @@ function TransactionItem({
                 <span className={amountClasses}>{ formattedAmount }</span>
                 <span className="transaction-item__date">{ date }</span>
                 <button
-                    className="transaction-item__delete-btn"
-                    onClick={() => onDelete(id)}
-                    aria-label="Удалить транзакцию"
+                    className="transaction-item__button transaction-item__button--edit"
+                    onClick={() => onEdit(transaction)}
                 >
-                    ✕
+                    <MdEdit size={16} />
+                </button>
+
+                <button
+                    className="transaction-item__button transaction-item__button--delete"
+                    onClick={() => onDelete(id)}
+                >
+                    <MdClose size={16} />
                 </button>
             </div>
         </li>

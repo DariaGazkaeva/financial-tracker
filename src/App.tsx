@@ -5,6 +5,7 @@ import DashboardPage from '@app-components/dashboard/DashboardPage.tsx';
 
 import {
     getTransactions,
+    editTransaction,
     addTransaction,
     deleteTransaction,
     getSummary,
@@ -15,8 +16,13 @@ import { DEFAULT_SUMMARY } from './api/transactions-api/consts.ts';
 
 import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from '@app-utils/date-utils.ts';
 
-import { ISummaryResponse, ITransactionPayload, ITransactionResponse } from './api/transactions-api/types.ts';
 import { ICategory } from './api/category-api/types.ts';
+import {
+    ISummaryResponse,
+    ITransactionPayload,
+    ITransactionEditPayload,
+    ITransactionResponse,
+} from './api/transactions-api/types.ts';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(Boolean(localStorage.getItem('token')));
@@ -60,6 +66,17 @@ function App() {
         await loadData({ fromDate, toDate });
     };
 
+    const onEditTransaction = async (newTransaction: ITransactionEditPayload) => {    
+        const { error } = await editTransaction(newTransaction);
+
+        if (error) {
+            alert('Ошибка редактирования');
+            return;
+        }
+
+        await loadData({ fromDate, toDate });
+    };
+
     const onDeleteTransaction = async (id: number) => {
         const { error } = await deleteTransaction(id);
 
@@ -91,6 +108,7 @@ function App() {
                     totalExpense={summary.expense}
                     categories={categories}
                     onAddTransaction={onAddTransaction}
+                    onEditTransaction={onEditTransaction}
                     onDeleteTransaction={onDeleteTransaction}
                     onFromDateChange={setFromDate}
                     onToDateChange={setToDate}

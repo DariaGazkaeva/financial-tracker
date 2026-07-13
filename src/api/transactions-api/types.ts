@@ -20,6 +20,11 @@ export interface ITransactionPayload extends ITransactionBase {
     categoryId: number,
 }
 
+export interface ITransactionEditPayload extends ITransactionBase {
+    id?: number,
+    categoryId: number,
+}
+
 export interface ISummaryResponse {
     income: number,
     expense: number,

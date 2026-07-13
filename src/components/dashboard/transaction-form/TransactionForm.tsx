@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 
@@ -10,7 +10,7 @@ import { formatDate } from '@app-utils/date-utils.js';
 
 import { ICategory } from '@app-api/category-api/types.ts';
 import type { CategoryType } from '@app-api/category-api/types.ts';
-import { ITransactionBase, ITransactionPayload } from '@app-api/transactions-api/types.ts';
+import { ITransactionBase, ITransactionEditPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
 
 import './transaction-form.css';
 
@@ -20,12 +20,14 @@ interface ITransactionFormType extends ITransactionBase {
 
 interface ITransactionFormProps {
     categories: ICategory[],
-    onAddTransaction: (value: ITransactionPayload) => void,
+    onSubmit: (value: ITransactionEditPayload) => void,
+    editableTransaction?: ITransactionResponse | null,
 }
 
 function TransactionForm({
     categories = [],
-    onAddTransaction,
+    editableTransaction,
+    onSubmit,
 }: ITransactionFormProps) {
     const [transactionType, setTransactionType] = useState<CategoryType>('expense');
 
@@ -43,21 +45,38 @@ function TransactionForm({
         setValue('categoryId', '');
     };
 
-    const onSubmit = (data: ITransactionFormType) => {
+    const onFormSubmit = (data: ITransactionFormType) => {
         const newTransaction = {
             description: data.description || '',
             amount: Number(data.amount),
             categoryId: Number(data.categoryId),
             date: data.date || new Date().toISOString().split('T')[0],
+            ...(editableTransaction && { id: editableTransaction.id }),
         };
 
-        onAddTransaction(newTransaction);
+        onSubmit(newTransaction);
         reset();
     };
 
+    useEffect(() => {
+        if (editableTransaction) {
+            setTransactionType(editableTransaction.category.type);
+
+            reset({
+                description: editableTransaction.description,
+                amount: editableTransaction.amount,
+                categoryId: editableTransaction.category.id,
+                date: editableTransaction.date,
+            });
+        } else {
+            setTransactionType('expense');
+            reset();
+        }
+    }, [editableTransaction]);
+
     return (
         <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onFormSubmit)}
             className="transaction-form"
         >
             <div className="transaction-form__fields">

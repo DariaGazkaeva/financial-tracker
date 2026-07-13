@@ -3,6 +3,7 @@ import {
     ISummaryResponse,
     ITransactionFilter,
     ITransactionPayload,
+    ITransactionEditPayload,
     ITransactionResponse,
 } from '@app-api/transactions-api/types.ts';
 import { getCategories } from '@app-api/category-api/index.ts';
@@ -54,7 +55,36 @@ export const addTransaction = (transaction: ITransactionPayload): Promise<IApiRe
         saveTransactions([newTransaction, ...allTransactions]);
 
         return newTransaction;
-  });
+    });
+
+export const editTransaction = (transaction: ITransactionEditPayload): Promise<IApiResponse<ITransactionResponse>> =>
+    withErrorHandling(async () => {
+        const { id, categoryId, ...transactionDetails } = transaction;
+
+        const allTransactions = loadTransactions();
+        const oldTransaction = allTransactions.find(t => t.id === id);
+
+        if (!oldTransaction) {
+            throw new Error('Транзакция не найдена');
+        }
+
+        const categories = (await getCategories()).data;
+        const category = categories?.find(c => c.id === Number(categoryId));
+
+        if (!category) {
+            throw new Error('Категория не найдена');
+        }
+
+        const updatedTransaction = {
+            ...oldTransaction,
+            category,
+            ...transactionDetails,
+        };
+
+        const updatedAll = allTransactions.map(t => t.id === id ? updatedTransaction : t);
+        saveTransactions(updatedAll);
+        return updatedTransaction;
+    });
 
 export const deleteTransaction = (id: number): Promise<IApiResponse<number>> =>
     withErrorHandling(async () => {
