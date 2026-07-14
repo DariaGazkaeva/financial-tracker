@@ -8,8 +8,7 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 
 import { formatDate } from '@app-utils/date-utils.js';
 
-import { ICategory } from '@app-types/category.ts';
-import type { TransactionType } from '@app-types/transaction.ts';
+import { CategoryType, ICategory } from '@app-types/category.ts';
 import { ITransactionBase, ITransactionEditPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
 
 import './transaction-form.css';
@@ -29,7 +28,7 @@ function TransactionForm({
     editableTransaction,
     onSubmit,
 }: ITransactionFormProps) {
-    const [transactionType, setTransactionType] = useState<TransactionType>('expense');
+    const [transactionType, setTransactionType] = useState<CategoryType>('expense');
 
     const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm<ITransactionFormType>({
         defaultValues: {
@@ -40,7 +39,7 @@ function TransactionForm({
 
     const filteredCategories = categories.filter(category => category.type === transactionType);
 
-    const handleTypeChange = (type: TransactionType) => {
+    const handleTypeChange = (type: CategoryType) => {
         setTransactionType(type);
         setValue('categoryId', '');
     };

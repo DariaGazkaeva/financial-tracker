@@ -1,4 +1,4 @@
-export const TRANSACTION_TYPES = {
+export const CATEGORY_TYPES = {
     INCOME: 'income',
     EXPENSE: 'expense',
 } as const;
