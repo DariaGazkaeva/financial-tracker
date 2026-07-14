@@ -20,7 +20,6 @@ import { ICategory } from '@app-types/category.ts';
 import {
     ISummary,
     ITransactionPayload,
-    ITransactionEditPayload,
     ITransactionResponse,
 } from './api/transactions-api/types.ts';
 
@@ -66,7 +65,7 @@ function App() {
         await loadData({ fromDate, toDate });
     };
 
-    const onEditTransaction = async (newTransaction: ITransactionEditPayload) => {    
+    const onEditTransaction = async (newTransaction: ITransactionPayload) => {    
         const { error } = await editTransaction(newTransaction);
 
         if (error) {

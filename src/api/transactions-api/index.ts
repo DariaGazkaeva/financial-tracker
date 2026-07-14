@@ -3,7 +3,6 @@ import {
     ISummary,
     ITransactionFilter,
     ITransactionPayload,
-    ITransactionEditPayload,
     ITransactionResponse,
 } from '@app-api/transactions-api/types.ts';
 import { getCategories } from '@app-api/category-api/index.ts';
@@ -57,7 +56,7 @@ export const addTransaction = (transaction: ITransactionPayload): Promise<IApiRe
         return newTransaction;
     });
 
-export const editTransaction = (transaction: ITransactionEditPayload): Promise<IApiResponse<ITransactionResponse>> =>
+export const editTransaction = (transaction: ITransactionPayload): Promise<IApiResponse<ITransactionResponse>> =>
     withErrorHandling(async () => {
         const { id, categoryId, ...transactionDetails } = transaction;
 

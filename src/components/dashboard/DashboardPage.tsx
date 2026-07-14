@@ -9,7 +9,7 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 import AppInput from '@app-ui/app-input/AppInput.tsx';
 import AppModal from '@app-ui/app-modal/AppModal.tsx';
 
-import { ITransactionPayload, ITransactionEditPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
+import { ITransactionPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
 import { ICategory } from '@app-types/category.ts';
 import type { FilterTypeValue } from '@app-components/dashboard/types.ts';
 
@@ -23,7 +23,7 @@ interface IDashboardPageProps {
     totalIncome: number,
     categories: ICategory[],
     onAddTransaction: (value: ITransactionPayload) => void,
-    onEditTransaction: (value: ITransactionEditPayload) => void,
+    onEditTransaction: (value: ITransactionPayload) => void,
     onDeleteTransaction: (id: number) => void,
     fromDate: string,
     toDate: string,
@@ -59,7 +59,7 @@ function DashboardPage({
         setEditableTransaction(transaction);
     };
 
-    const onTransactionFormSubmit = (transaction: ITransactionEditPayload) => {
+    const onTransactionFormSubmit = (transaction: ITransactionPayload) => {
         if (editableTransaction) {
             onEditTransaction(transaction);
             setIsModalOpen(false);

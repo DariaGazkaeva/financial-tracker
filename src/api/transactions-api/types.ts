@@ -17,10 +17,6 @@ export interface ITransactionResponse extends ITransactionBase {
 }
 
 export interface ITransactionPayload extends ITransactionBase {
-    categoryId: number,
-}
-
-export interface ITransactionEditPayload extends ITransactionBase {
     id?: number,
     categoryId: number,
 }
