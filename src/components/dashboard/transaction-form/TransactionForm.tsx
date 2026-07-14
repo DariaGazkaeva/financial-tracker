@@ -9,7 +9,7 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 import { formatDate } from '@app-utils/date-utils.js';
 
 import { CategoryType, ICategory } from '@app-types/category.ts';
-import { ITransactionBase, ITransactionPayload, ITransactionResponse } from '@app-api/transactions-api/types.ts';
+import { ITransactionBase, ITransactionPayload, ITransactionResponse } from '@app-types/transaction.ts';
 
 import './transaction-form.css';
 

@@ -1,6 +1,6 @@
 import TransactionItem from '@app-components/dashboard/transaction-item/TransactionItem.tsx';
 
-import { ITransactionResponse } from '@/api/transactions-api/types.ts';
+import { ITransactionResponse } from '@app-types/transaction.ts';
 
 import './transaction-list.css';
 

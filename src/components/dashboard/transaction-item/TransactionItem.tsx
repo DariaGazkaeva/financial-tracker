@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import { MdEdit, MdClose } from 'react-icons/md';
 
-import { ITransactionResponse } from '@app-api/transactions-api/types.ts';
+import { ITransactionResponse } from '@app-types/transaction.ts';
 
 import './transaction-item.css';
 

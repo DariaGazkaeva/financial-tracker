@@ -11,14 +11,14 @@ export interface ITransactionBase {
     date: string,
 }
 
-export interface ITransactionResponse extends ITransactionBase {
-    id: number,
-    category: ICategory,
-}
-
 export interface ITransactionPayload extends ITransactionBase {
     id?: number,
     categoryId: number,
+}
+
+export interface ITransactionResponse extends ITransactionBase {
+    id: number,
+    category: ICategory,
 }
 
 export interface ISummary {

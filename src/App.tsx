@@ -21,7 +21,7 @@ import {
     ISummary,
     ITransactionPayload,
     ITransactionResponse,
-} from './api/transactions-api/types.ts';
+} from '@app-types/transaction.ts';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(Boolean(localStorage.getItem('token')));
