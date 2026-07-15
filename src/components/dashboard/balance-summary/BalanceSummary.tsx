@@ -1,8 +1,8 @@
-import { useTransactionStore } from '@app-store/useTransactionStore.ts';
+import { useTransactionService } from '@app-hooks/useTransactionService.ts';
 import './balance-summary.css';
 
 function BalanceSummary() {
-    const summary = useTransactionStore(state => state.summary);
+    const { summary } = useTransactionService();
 
     return (
         <div className="balance-summary">

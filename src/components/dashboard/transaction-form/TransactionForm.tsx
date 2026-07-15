@@ -10,8 +10,7 @@ import { formatDate } from '@app-utils/date-utils.js';
 
 import { CategoryType, ITransactionBase } from '@app-types/index.ts';
 
-import { useTransaction } from '@app-hooks/useTransaction.ts';
-import { useTransactionStore } from '@app-store/useTransactionStore.ts';
+import { useTransactionService } from '@app-hooks/useTransactionService.ts';
 
 import './transaction-form.css';
 
@@ -20,6 +19,8 @@ interface ITransactionFormType extends ITransactionBase {
 };
 
 function TransactionForm() {
+    const [transactionType, setTransactionType] = useState<CategoryType>('expense');
+    const { categories, editableTransaction, onSave } = useTransactionService();
     const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm<ITransactionFormType>({
         defaultValues: {
             categoryId: '',
@@ -27,18 +28,12 @@ function TransactionForm() {
         }
     });
 
-    const [transactionType, setTransactionType] = useState<CategoryType>('expense');
-
     const handleTypeChange = (type: CategoryType) => {
         setTransactionType(type);
         setValue('categoryId', '');
     };
 
-    const categories = useTransactionStore(state => state.categories);
     const filteredCategories = categories.filter(category => category.type === transactionType);
-
-    const editableTransaction = useTransactionStore(state => state.editableTransaction);
-    const { onSave } = useTransaction();
 
     const onFormSubmit = (data: ITransactionFormType) => {
         onSave({

@@ -4,14 +4,10 @@ import {
     ICategory,
     ISummary,
     ITransactionFilter,
-    ITransactionPayload,
     ITransactionResponse,
 } from '@app-types/index.ts';
 
 import { DEFAULT_FILTER, DEFAULT_SUMMARY } from '@app-consts/index.ts';
-
-import { addTransaction, deleteTransaction, editTransaction, getSummary, getTransactions } from '@app-api/transactions-api/index.ts';
-import { getCategories } from '@app-api/category-api/index.ts';
 
 interface ITransactionStore {
     transactions: ITransactionResponse[],
@@ -20,101 +16,27 @@ interface ITransactionStore {
     filter: ITransactionFilter,
     isModalOpen: boolean,
     editableTransaction: ITransactionResponse | null,
-    isLoading: boolean,
 
-    loadData: (filter?: ITransactionFilter) => Promise<void>,
-    addTransaction: (transaction: ITransactionPayload) => Promise<void>,
-    editTransaction: (transaction: ITransactionPayload) => Promise<void>,
-    deleteTransaction: (id: number) => Promise<void>,
-    setFilter: (filter: ITransactionFilter) => Promise<void>,
+    setTransactions: (transactions: ITransactionResponse[]) => void,
+    setCategories: (categories: ICategory[]) => void,
+    setSummary: (summary: ISummary) => void,
+    setFilter: (filter: ITransactionFilter) => void,
     setIsModalOpen: (isModalOpen: boolean) => void,
     setEditableTransaction: (transaction: ITransactionResponse | null) => void,
 }
 
-export const useTransactionStore = create<ITransactionStore>((set, get) => ({
+export const useTransactionStore = create<ITransactionStore>((set) => ({
     transactions: [],
     categories: [],
     summary: DEFAULT_SUMMARY,
     filter: DEFAULT_FILTER,
-    editableTransaction: null,
     isModalOpen: false,
-    isLoading: false,
+    editableTransaction: null,
 
-    loadData: async (filter = DEFAULT_FILTER) => {
-        set({ isLoading: true });
-
-        const [transactions, summary, categories] = await Promise.all([
-            getTransactions(filter),
-            getSummary(filter),
-            getCategories(),
-        ]);
-
-        if (transactions.error || summary.error || categories.error) {
-            alert('Ошибка получения данных');
-            return;
-        }
-
-        set({
-            transactions: transactions.data || [],
-            summary: summary.data || DEFAULT_SUMMARY,
-            categories: categories.data || [],
-            isLoading: false,
-        });
-    },
-
-    addTransaction: async (transaction) => {
-        const { error } = await addTransaction(transaction);
-
-        if (error) {
-            alert('Ошибка добавления');
-            return;
-        }
-
-        const { loadData, filter } = get();
-        loadData(filter);
-    },
-
-    editTransaction: async (transaction) => {
-        const { error } = await editTransaction(transaction);
-
-        if (error) {
-            alert('Ошибка редактирования');
-            return;
-        }
-
-        const { loadData, filter } = get();
-        loadData(filter);
-    },
-
-    deleteTransaction: async (id) => {
-        const { error } = await deleteTransaction(id);
-        
-        if (error) {
-            alert('Ошибка удаления');
-            return;
-        }
-
-        const { loadData, filter } = get();
-        loadData(filter);
-    },
-
-    setFilter: async (newFilter) => {
-        const { filter, loadData } = get();
-        
-        const updated = {
-            ...filter,
-            ...newFilter,
-        }
-
-        set({ filter: updated });
-        loadData(updated);
-    },
-
-    setIsModalOpen: (isModalOpen) => {
-        set({ isModalOpen });
-    },
-
-    setEditableTransaction: (transaction) => {
-        set({ editableTransaction: transaction });
-    },
+    setTransactions: (transactions) => set({ transactions }),
+    setCategories: (categories) => set({ categories }),
+    setSummary: (summary) => set({ summary }),
+    setFilter: (filter) => set({ filter }),
+    setIsModalOpen: (isModalOpen) => set({ isModalOpen }),
+    setEditableTransaction: (transaction) => set({ editableTransaction: transaction }),
 }));

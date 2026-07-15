@@ -11,8 +11,7 @@ import AppModal from '@app-ui/app-modal/AppModal.tsx';
 
 import type { FilterTypeValue } from '@app-types/index.ts';
 
-import { useTransaction } from '@app-hooks/useTransaction.ts';
-import { useTransactionStore } from '@app-store/useTransactionStore.ts';
+import { useTransactionService } from '@app-hooks/useTransactionService.ts';
 
 import './dashboard-page.css';
 
@@ -21,7 +20,16 @@ interface IDashboardPageProps {
 }
 
 function DashboardPage({ onLogout }: IDashboardPageProps) {
-    const loadData = useTransactionStore(state => state.loadData);
+    const {
+        transactions,
+        isModalOpen,
+        filter,
+        loadData,
+        openModal,
+        closeModal,
+        onFromDateChange,
+        onToDateChange,
+    } = useTransactionService();
 
     useEffect(() => {
         loadData();
@@ -29,16 +37,9 @@ function DashboardPage({ onLogout }: IDashboardPageProps) {
 
     const [filterType, setFilterType] = useState<FilterTypeValue>('all');
 
-    const transactions = useTransactionStore(state => state.transactions);
     const filteredTransactions = filterType === 'all'
         ? transactions
         : transactions.filter(transaction => transaction.category.type === filterType);
-
-    const isModalOpen = useTransactionStore(state => state.isModalOpen);
-    const { onModalOpen, onModalClose } = useTransaction();
-
-    const filter = useTransactionStore(state => state.filter);
-    const { onFromDateChange, onToDateChange } = useTransaction();
 
     return (
         <div className="dashboard-page">
@@ -79,7 +80,7 @@ function DashboardPage({ onLogout }: IDashboardPageProps) {
                         className="dashboard-page__add-button"
                         theme='primary'
                         title="Добавить транзакцию"
-                        onClick={onModalOpen}
+                        onClick={() => openModal()}
                     >
                         <MdAdd size={24} />
                     </AppButton>
@@ -99,7 +100,7 @@ function DashboardPage({ onLogout }: IDashboardPageProps) {
 
             <AppModal
                 isOpen={isModalOpen}
-                onClose={onModalClose}
+                onClose={() => closeModal()}
             >
                 <TransactionForm />
             </AppModal>
