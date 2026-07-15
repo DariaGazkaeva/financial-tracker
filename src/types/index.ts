@@ -1,5 +1,12 @@
-import { FILTER_TYPE_OPTIONS } from '@app-consts/index.ts';
-import { ICategory } from '@app-types/category.ts';
+import { CATEGORY_TYPES, FILTER_TYPE_OPTIONS } from '@app-consts/index.ts';
+
+export type CategoryType = typeof CATEGORY_TYPES[keyof typeof CATEGORY_TYPES];
+
+export interface ICategory {
+    id: number,
+    label: string,
+    type: CategoryType,
+};
 
 export interface ITransactionFilter {
     fromDate?: string,

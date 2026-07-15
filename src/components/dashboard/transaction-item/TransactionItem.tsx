@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { MdEdit, MdClose } from 'react-icons/md';
-import { ITransactionResponse } from '@app-types/transaction.ts';
+import { ITransactionResponse } from '@app-types/index.ts';
 import { useTransaction } from '@app-hooks/useTransaction.ts';
 import './transaction-item.css';
 

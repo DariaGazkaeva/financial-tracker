@@ -4,7 +4,7 @@ import {
     ITransactionFilter,
     ITransactionPayload,
     ITransactionResponse,
-} from '@app-types/transaction.ts';
+} from '@app-types/index.ts';
 
 import { getCategories } from '@app-api/category-api/index.ts';
 import { withErrorHandling } from '@app-api/utils.ts';

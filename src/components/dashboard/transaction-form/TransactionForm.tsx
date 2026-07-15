@@ -8,8 +8,7 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 
 import { formatDate } from '@app-utils/date-utils.js';
 
-import { CategoryType } from '@app-types/category.ts';
-import { ITransactionBase } from '@app-types/transaction.ts';
+import { CategoryType, ITransactionBase } from '@app-types/index.ts';
 
 import { useTransaction } from '@app-hooks/useTransaction.ts';
 import { useTransactionStore } from '@app-store/useTransactionStore.ts';

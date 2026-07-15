@@ -1,7 +1,12 @@
 import { create } from 'zustand';
 
-import { ISummary, ITransactionFilter, ITransactionPayload, ITransactionResponse } from '@app-types/transaction.ts';
-import { ICategory } from '@app-types/category.ts';
+import {
+    ICategory,
+    ISummary,
+    ITransactionFilter,
+    ITransactionPayload,
+    ITransactionResponse,
+} from '@app-types/index.ts';
 
 import { DEFAULT_FILTER, DEFAULT_SUMMARY } from '@app-consts/index.ts';
 

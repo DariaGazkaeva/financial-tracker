@@ -1,4 +1,4 @@
-import { ITransactionPayload, ITransactionResponse } from '@app-types/transaction.ts';
+import { ITransactionPayload, ITransactionResponse } from '@app-types/index.ts';
 import { useTransactionStore } from '@app-store/useTransactionStore.ts';
 
 export const useTransaction = () => {

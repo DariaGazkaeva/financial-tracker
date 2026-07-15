@@ -9,7 +9,7 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 import AppInput from '@app-ui/app-input/AppInput.tsx';
 import AppModal from '@app-ui/app-modal/AppModal.tsx';
 
-import type { FilterTypeValue } from '@app-types/transaction.ts';
+import type { FilterTypeValue } from '@app-types/index.ts';
 
 import { useTransaction } from '@app-hooks/useTransaction.ts';
 import { useTransactionStore } from '@app-store/useTransactionStore.ts';
