@@ -8,8 +8,11 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 
 import { formatDate } from '@app-utils/date-utils.js';
 
-import { CategoryType, ICategory } from '@app-types/category.ts';
-import { ITransactionBase, ITransactionPayload, ITransactionResponse } from '@app-types/transaction.ts';
+import { CategoryType } from '@app-types/category.ts';
+import { ITransactionBase } from '@app-types/transaction.ts';
+
+import { useTransaction } from '@app-hooks/useTransaction.ts';
+import { useTransactionStore } from '@app-store/useTransactionStore.ts';
 
 import './transaction-form.css';
 
@@ -17,19 +20,7 @@ interface ITransactionFormType extends ITransactionBase {
     categoryId: number | '',
 };
 
-interface ITransactionFormProps {
-    categories: ICategory[],
-    onSubmit: (value: ITransactionPayload) => void,
-    editableTransaction?: ITransactionResponse | null,
-}
-
-function TransactionForm({
-    categories = [],
-    editableTransaction,
-    onSubmit,
-}: ITransactionFormProps) {
-    const [transactionType, setTransactionType] = useState<CategoryType>('expense');
-
+function TransactionForm() {
     const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm<ITransactionFormType>({
         defaultValues: {
             categoryId: '',
@@ -37,23 +28,28 @@ function TransactionForm({
         }
     });
 
-    const filteredCategories = categories.filter(category => category.type === transactionType);
+    const [transactionType, setTransactionType] = useState<CategoryType>('expense');
 
     const handleTypeChange = (type: CategoryType) => {
         setTransactionType(type);
         setValue('categoryId', '');
     };
 
+    const categories = useTransactionStore(state => state.categories);
+    const filteredCategories = categories.filter(category => category.type === transactionType);
+
+    const editableTransaction = useTransactionStore(state => state.editableTransaction);
+    const { onSave } = useTransaction();
+
     const onFormSubmit = (data: ITransactionFormType) => {
-        const newTransaction = {
+        onSave({
             description: data.description || '',
             amount: Number(data.amount),
             categoryId: Number(data.categoryId),
-            date: data.date || new Date().toISOString().split('T')[0],
+            date: data.date,
             ...(editableTransaction && { id: editableTransaction.id }),
-        };
+        });
 
-        onSubmit(newTransaction);
         reset();
     };
 

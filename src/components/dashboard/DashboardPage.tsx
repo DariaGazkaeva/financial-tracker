@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { MdAdd } from 'react-icons/md';
 import BalanceSummary from '@app-components/dashboard/balance-summary/BalanceSummary.tsx';
@@ -9,65 +9,36 @@ import AppButton from '@app-ui/app-button/AppButton.tsx';
 import AppInput from '@app-ui/app-input/AppInput.tsx';
 import AppModal from '@app-ui/app-modal/AppModal.tsx';
 
-import { ITransactionPayload, ITransactionResponse } from '@app-types/transaction.ts';
-import { ICategory } from '@app-types/category.ts';
-import type { FilterTypeValue } from '@app-components/dashboard/types.ts';
+import type { FilterTypeValue } from '@app-types/transaction.ts';
+
+import { useTransaction } from '@app-hooks/useTransaction.ts';
+import { useTransactionStore } from '@app-store/useTransactionStore.ts';
 
 import './dashboard-page.css';
 
 interface IDashboardPageProps {
     onLogout: () => void,
-    transactions: ITransactionResponse[],
-    total: number,
-    totalExpense: number,
-    totalIncome: number,
-    categories: ICategory[],
-    onAddTransaction: (value: ITransactionPayload) => void,
-    onEditTransaction: (value: ITransactionPayload) => void,
-    onDeleteTransaction: (id: number) => void,
-    fromDate: string,
-    toDate: string,
-    onFromDateChange: (value: string) => void,
-    onToDateChange: (value: string) => void,
 }
 
-function DashboardPage({
-    onLogout,
-    transactions = [],
-    total,
-    totalExpense,
-    totalIncome,
-    categories = [],
-    onAddTransaction,
-    onEditTransaction,
-    onDeleteTransaction,
-    fromDate,
-    toDate,
-    onFromDateChange,
-    onToDateChange,
-}: IDashboardPageProps) {
-    const [filterType, setFilterType] = useState<FilterTypeValue>('all');
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editableTransaction, setEditableTransaction] = useState<ITransactionResponse | null>(null);
+function DashboardPage({ onLogout }: IDashboardPageProps) {
+    const loadData = useTransactionStore(state => state.loadData);
 
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    const [filterType, setFilterType] = useState<FilterTypeValue>('all');
+
+    const transactions = useTransactionStore(state => state.transactions);
     const filteredTransactions = filterType === 'all'
         ? transactions
         : transactions.filter(transaction => transaction.category.type === filterType);
 
-    const onEditTransactionClick = (transaction: ITransactionResponse) => {
-        setIsModalOpen(true);
-        setEditableTransaction(transaction);
-    };
+    const isModalOpen = useTransactionStore(state => state.isModalOpen);
+    const { onModalOpen, onModalClose } = useTransaction();
 
-    const onTransactionFormSubmit = (transaction: ITransactionPayload) => {
-        if (editableTransaction) {
-            onEditTransaction(transaction);
-            setIsModalOpen(false);
-            setEditableTransaction(null);
-        } else {
-            onAddTransaction(transaction);
-        }
-    }
+    const filter = useTransactionStore(state => state.filter);
+    const { onFromDateChange, onToDateChange } = useTransaction();
 
     return (
         <div className="dashboard-page">
@@ -79,7 +50,7 @@ function DashboardPage({
                             label="С"
                             name="fromDate"
                             type="date"
-                            value={fromDate}
+                            value={filter.fromDate}
                             onChange={(e) => onFromDateChange(e.target.value)}
                             theme='horizontal'
                         />
@@ -87,7 +58,7 @@ function DashboardPage({
                             label="По"
                             name="toDate"
                             type="date"
-                            value={toDate}
+                            value={filter.toDate}
                             onChange={(e) => onToDateChange(e.target.value)}
                             theme='horizontal'
                         />
@@ -103,16 +74,12 @@ function DashboardPage({
             <div className="dashboard-page__main">
                 <div className='dashboard-page__column dashboard-page__column--left'>
                     <h2 className="dashboard-page__subtitle">Обзор</h2>
-                    <BalanceSummary
-                        total={total}
-                        expense={totalExpense}
-                        income={totalIncome}
-                    />
+                    <BalanceSummary/>
                     <AppButton
                         className="dashboard-page__add-button"
                         theme='primary'
                         title="Добавить транзакцию"
-                        onClick={() => setIsModalOpen(true)}
+                        onClick={onModalOpen}
                     >
                         <MdAdd size={24} />
                     </AppButton>
@@ -126,21 +93,15 @@ function DashboardPage({
                     />
                     <TransactionList
                         transactions={filteredTransactions}
-                        onEdit={onEditTransactionClick}
-                        onDelete={onDeleteTransaction}
                     />
                 </div>
             </div>
 
             <AppModal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                onClose={onModalClose}
             >
-                <TransactionForm
-                    categories={categories}
-                    onSubmit={onTransactionFormSubmit}
-                    editableTransaction={editableTransaction}
-                />
+                <TransactionForm />
             </AppModal>
         </div>
     );

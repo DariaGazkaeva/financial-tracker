@@ -1,91 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import AuthPage from '@app-components/auth/AuthPage.tsx';
 import DashboardPage from '@app-components/dashboard/DashboardPage.tsx';
 
-import {
-    getTransactions,
-    editTransaction,
-    addTransaction,
-    deleteTransaction,
-    getSummary,
-} from '@app-api/transactions-api/index.ts';
-import { getCategories } from '@app-api/category-api/index.ts';
-
-import { DEFAULT_SUMMARY } from '@app-consts/index.ts';
-
-import { getFirstDayOfMonth, getLastDayOfMonth, formatDate } from '@app-utils/date-utils.ts';
-
-import { ICategory } from '@app-types/category.ts';
-import {
-    ISummary,
-    ITransactionPayload,
-    ITransactionResponse,
-} from '@app-types/transaction.ts';
-
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(Boolean(localStorage.getItem('token')));
-    const [transactions, setTransactions] = useState<ITransactionResponse[]>([]);
-    const [summary, setSummary] = useState<ISummary>(DEFAULT_SUMMARY);
-    const [categories, setCategories] = useState<ICategory[]>([]);
-    const [fromDate, setFromDate] = useState<string>(formatDate(getFirstDayOfMonth()));
-    const [toDate, setToDate] = useState<string>(formatDate(getLastDayOfMonth()));
-
-    const loadData = async (filters = {}) => {
-        const transactionsData = await getTransactions(filters);
-        const summaryData = await getSummary(filters);
-        const categoriesData = await getCategories();
-
-        if (transactionsData.error || summaryData.error || categoriesData.error) {
-            alert('Ошибка получения данных');
-            return;
-        }
-
-        setTransactions(transactionsData.data ?? []);
-        setSummary(summaryData.data ?? DEFAULT_SUMMARY);
-        setCategories(categoriesData.data ?? []);
-    };
-
-    useEffect(() => {
-        loadData();
-    }, []);
-
-    useEffect(() => {
-        loadData({ fromDate, toDate });
-    }, [fromDate, toDate]);
-
-    const onAddTransaction = async (newTransaction: ITransactionPayload) => {
-        const { error } = await addTransaction(newTransaction);
-
-        if (error) {
-            alert('Ошибка добавления');
-            return;
-        }
-
-        await loadData({ fromDate, toDate });
-    };
-
-    const onEditTransaction = async (newTransaction: ITransactionPayload) => {    
-        const { error } = await editTransaction(newTransaction);
-
-        if (error) {
-            alert('Ошибка редактирования');
-            return;
-        }
-
-        await loadData({ fromDate, toDate });
-    };
-
-    const onDeleteTransaction = async (id: number) => {
-        const { error } = await deleteTransaction(id);
-
-        if (error) {
-            alert('Ошибка удаления');
-            return;
-        }
-
-        await loadData({ fromDate, toDate });
-    };
 
     const handleLogin = () => {
         setIsAuthenticated(true);
@@ -99,21 +18,7 @@ function App() {
     return (
         <div className="app">
             {isAuthenticated ? (
-                <DashboardPage
-                    onLogout={handleLogout}
-                    transactions={transactions}
-                    total={summary.total}
-                    totalIncome={summary.income}
-                    totalExpense={summary.expense}
-                    categories={categories}
-                    onAddTransaction={onAddTransaction}
-                    onEditTransaction={onEditTransaction}
-                    onDeleteTransaction={onDeleteTransaction}
-                    onFromDateChange={setFromDate}
-                    onToDateChange={setToDate}
-                    fromDate={fromDate}
-                    toDate={toDate}
-                />
+                <DashboardPage onLogout={handleLogout} />
             ) : (
                 <AuthPage onLogin={handleLogin} />
             )}

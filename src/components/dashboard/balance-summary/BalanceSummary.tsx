@@ -1,22 +1,15 @@
+import { useTransactionStore } from '@app-store/useTransactionStore.ts';
 import './balance-summary.css';
 
-interface IBalanceSummaryProps {
-    total: number,
-    income: number,
-    expense: number,
-}
+function BalanceSummary() {
+    const summary = useTransactionStore(state => state.summary);
 
-function BalanceSummary({
-    total = 0,
-    income = 0,
-    expense = 0,
-}: IBalanceSummaryProps) {
     return (
         <div className="balance-summary">
             <div className="balance-summary__card">
                 <span className="balance-summary__label">Бюджет</span>
                 <span className="balance-summary__value balance-summary__value--total">
-                    { total }
+                    { summary.total }
                 </span>
             </div>
 
@@ -24,14 +17,14 @@ function BalanceSummary({
                 <div className="balance-summary__card">
                     <span className="balance-summary__label">Доходы</span>
                     <span className="balance-summary__value balance-summary__value--income">
-                        { income }
+                        { summary.income }
                     </span>
                 </div>
 
                 <div className="balance-summary__card">
                     <span className="balance-summary__label">Расходы</span>
                     <span className="balance-summary__value balance-summary__value--expense">
-                        { expense }
+                        { summary.expense }
                     </span>
                 </div>
             </div>

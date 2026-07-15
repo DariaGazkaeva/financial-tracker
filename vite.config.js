@@ -10,6 +10,8 @@ export default defineConfig({
             '@app-api': path.resolve(__dirname, './src/api'),
             '@app-components': path.resolve(__dirname, './src/components'),
             '@app-consts': path.resolve(__dirname, './src/consts'),
+            '@app-hooks': path.resolve(__dirname, './src/hooks'),
+            '@app-store': path.resolve(__dirname, './src/store'),
             '@app-types': path.resolve(__dirname, './src/types'),
             '@app-ui': path.resolve(__dirname, './src/ui'),
             '@app-utils': path.resolve(__dirname, './src/utils'),

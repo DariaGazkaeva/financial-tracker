@@ -11,6 +11,8 @@
             "@app-api/*": ["./src/api/*"],
             "@app-components/*": ["./src/components/*"],
             "@app-consts/*": ["./src/consts/*"],
+            "@app-hooks/*": ["./src/hooks/*"],
+            "@app-store/*": ["./src/store/*"],
             "@app-types/*": ["./src/types/*"],
             "@app-ui/*": ["./src/ui/*"],
             "@app-utils/*": ["./src/utils/*"],

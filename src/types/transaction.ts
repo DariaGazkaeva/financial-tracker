@@ -1,3 +1,4 @@
+import { FILTER_TYPE_OPTIONS } from '@app-consts/index.ts';
 import { ICategory } from '@app-types/category.ts';
 
 export interface ITransactionFilter {
@@ -26,3 +27,5 @@ export interface ISummary {
     expense: number,
     total: number,
 }
+
+export type FilterTypeValue = typeof FILTER_TYPE_OPTIONS[number]['value'];

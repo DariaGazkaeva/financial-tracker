@@ -1,22 +1,14 @@
 import clsx from 'clsx';
-
 import { MdEdit, MdClose } from 'react-icons/md';
-
 import { ITransactionResponse } from '@app-types/transaction.ts';
-
+import { useTransaction } from '@app-hooks/useTransaction.ts';
 import './transaction-item.css';
 
 interface ITransactionItemProps {
     transaction: ITransactionResponse,
-    onDelete: (id: number) => void,
-    onEdit: (transaction: ITransactionResponse) => void,
 }
 
-function TransactionItem({
-    transaction,
-    onDelete,
-    onEdit,
-}: ITransactionItemProps) {
+function TransactionItem({ transaction }: ITransactionItemProps) {
     const {
         id,
         description,
@@ -32,6 +24,8 @@ function TransactionItem({
         'transaction-item__amount',
         isIncome ? 'transaction-item__amount--income' : 'transaction-item__amount--expense',
     );
+
+    const { onEdit, onDelete } = useTransaction();
 
     return (
         <li className="transaction-item">

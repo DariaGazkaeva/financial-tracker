@@ -6,15 +6,9 @@ import './transaction-list.css';
 
 interface ITransactionListProps {
     transactions: ITransactionResponse[],
-    onEdit: (transaction: ITransactionResponse) => void,
-    onDelete: (id: number) => void,
 }
 
-function TransactionList({
-    transactions = [],
-    onEdit,
-    onDelete,
-}: ITransactionListProps) {
+function TransactionList({ transactions = [] }: ITransactionListProps) {
     if (transactions.length === 0) {
         return (
             <div className="transaction-list">
@@ -29,8 +23,6 @@ function TransactionList({
                 <TransactionItem
                     key={transaction.id}
                     transaction={transaction}
-                    onEdit={onEdit}
-                    onDelete={onDelete}
                 />
             ))}
         </ul>
