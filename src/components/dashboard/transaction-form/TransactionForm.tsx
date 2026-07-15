@@ -101,14 +101,6 @@ function TransactionForm() {
                 </div>
 
                 <AppInput
-                    label="Описание"
-                    name="description"
-                    placeholder="Например: Кофе"
-                    register={register}
-                    error={errors.description?.message}
-                />
-
-                <AppInput
                     label="Сумма"
                     name="amount"
                     placeholder="100"
@@ -141,6 +133,14 @@ function TransactionForm() {
                     rules={{
                         required: 'Заполните поле',
                     }}
+                />
+
+                <AppInput
+                    label="Описание"
+                    name="description"
+                    placeholder="Например: Кофе"
+                    register={register}
+                    error={errors.description?.message}
                 />
             </div>
 
