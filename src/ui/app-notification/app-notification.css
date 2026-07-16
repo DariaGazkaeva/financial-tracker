@@ -1,0 +1,15 @@
+.notification {
+    @apply p-4 rounded-lg shadow-lg text-white transition-all duration-300;
+}
+
+.notification--success {
+    @apply bg-green-600;
+}
+
+.notification--error {
+    @apply bg-red-600;
+}
+
+.notification--info {
+    @apply bg-blue-600;
+}
