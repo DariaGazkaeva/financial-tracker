@@ -21,3 +21,14 @@ export const FILTER_TYPE_OPTIONS = [
     { value: 'income', label: 'Доходы' },
     { value: 'expense', label: 'Расходы' },
 ] as const;
+
+export const NOTIFICATION_ACTIONS = {
+    ADD: 'ADD_NOTIFICATION',
+    REMOVE: 'REMOVE_NOTIFICATION',
+} as const;
+
+export const NOTIFICATION_TYPE = {
+    SUCCESS: 'success',
+    ERROR: 'error',
+    INFO: 'info',
+} as const;

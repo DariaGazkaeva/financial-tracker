@@ -1,4 +1,4 @@
-import { CATEGORY_TYPES, FILTER_TYPE_OPTIONS } from '@app-consts/index.ts';
+import { CATEGORY_TYPES, FILTER_TYPE_OPTIONS, NOTIFICATION_TYPE } from '@app-consts/index.ts';
 
 export type CategoryType = typeof CATEGORY_TYPES[keyof typeof CATEGORY_TYPES];
 
@@ -36,3 +36,5 @@ export interface ISummary {
 }
 
 export type FilterTypeValue = typeof FILTER_TYPE_OPTIONS[number]['value'];
+
+export type NotificationType = typeof NOTIFICATION_TYPE[keyof typeof NOTIFICATION_TYPE];

@@ -1,4 +1,5 @@
 import { useTransactionStore } from '@app-store/useTransactionStore.ts';
+import { useNotification } from '@app-hooks/useNotification.ts';
 
 import { getCategories } from '@app-api/category-api/index.ts';
 import {
@@ -15,10 +16,11 @@ import {
     ITransactionFilter,
 } from '@app-types/index.ts';
 
-import { DEFAULT_FILTER, DEFAULT_SUMMARY } from '@app-consts/index.ts';
+import { DEFAULT_FILTER, DEFAULT_SUMMARY, NOTIFICATION_TYPE } from '@app-consts/index.ts';
 
 export const useTransactionService = () => {
     const store = useTransactionStore();
+    const { showNotification } = useNotification();
 
     const loadData = async (filter: ITransactionFilter = DEFAULT_FILTER) => {
         const [transactions, summary, categories] = await Promise.all([
@@ -28,7 +30,7 @@ export const useTransactionService = () => {
         ]);
 
         if (transactions.error || summary.error || categories.error) {
-            alert('Ошибка получения данных');
+            showNotification('Ошибка получения данных', NOTIFICATION_TYPE.ERROR);
             return;
         }
 
@@ -41,7 +43,7 @@ export const useTransactionService = () => {
         const { error } = await apiAdd(transaction);
 
         if (error) {
-            alert('Ошибка добавления');
+            showNotification('Ошибка добавления', NOTIFICATION_TYPE.ERROR);
             return;
         }
 
@@ -52,7 +54,7 @@ export const useTransactionService = () => {
         const { error } = await apiEdit(transaction);
 
         if (error) {
-            alert('Ошибка редактирования');
+            showNotification('Ошибка редактирования', NOTIFICATION_TYPE.ERROR);
             return;
         }
 
@@ -63,7 +65,7 @@ export const useTransactionService = () => {
         const { error } = await apiDelete(id);
 
         if (error) {
-            alert('Ошибка удаления');
+            showNotification('Ошибка удаления', NOTIFICATION_TYPE.ERROR);
             return;
         }
 
