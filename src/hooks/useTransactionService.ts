@@ -1,5 +1,6 @@
 import { useTransactionStore } from '@app-store/useTransactionStore.ts';
 import { useNotification } from '@app-hooks/useNotification.ts';
+import { useModal } from '@app-hooks/useModal.ts';
 
 import { getCategories } from '@app-api/category-api/index.ts';
 import {
@@ -12,7 +13,6 @@ import {
 
 import {
     ITransactionPayload,
-    ITransactionResponse,
     ITransactionFilter,
 } from '@app-types/index.ts';
 
@@ -21,6 +21,7 @@ import { DEFAULT_FILTER, DEFAULT_SUMMARY, NOTIFICATION_TYPE } from '@app-consts/
 export const useTransactionService = () => {
     const store = useTransactionStore();
     const { showNotification } = useNotification();
+    const { transactionFormState, openModal, closeModal } = useModal();
 
     const loadData = async (filter: ITransactionFilter = DEFAULT_FILTER) => {
         const [transactions, summary, categories] = await Promise.all([
@@ -85,16 +86,6 @@ export const useTransactionService = () => {
     const onFromDateChange = (fromDate: string) => setFilter({ fromDate });
     const onToDateChange = (toDate: string) => setFilter({ toDate });
 
-    const openModal = (transaction?: ITransactionResponse) => {
-        store.setEditableTransaction(transaction || null);
-        store.setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        store.setIsModalOpen(false);
-        store.setEditableTransaction(null);
-    };
-
     const saveTransaction = async (payload: ITransactionPayload) => {
         if (payload.id) {
             await editTransaction(payload);
@@ -109,8 +100,7 @@ export const useTransactionService = () => {
         categories: store.categories,
         summary: store.summary,
         filter: store.filter,
-        isModalOpen: store.isModalOpen,
-        editableTransaction: store.editableTransaction,
+        transactionFormState,
 
         loadData,
         onSave: saveTransaction,
@@ -118,7 +108,5 @@ export const useTransactionService = () => {
         onEdit: openModal,
         onFromDateChange,
         onToDateChange,
-        openModal,
-        closeModal,
     };
 };

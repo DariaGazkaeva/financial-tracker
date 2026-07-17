@@ -12,6 +12,7 @@ import AppModal from '@app-ui/app-modal/AppModal.tsx';
 import type { FilterTypeValue } from '@app-types/index.ts';
 
 import { useTransactionService } from '@app-hooks/useTransactionService.ts';
+import { useModal } from '@app-hooks/useModal.ts';
 
 import './dashboard-page.css';
 
@@ -20,13 +21,12 @@ interface IDashboardPageProps {
 }
 
 function DashboardPage({ onLogout }: IDashboardPageProps) {
+    const { isModalOpen, openModal, closeModal } = useModal();
+
     const {
         transactions,
-        isModalOpen,
         filter,
         loadData,
-        openModal,
-        closeModal,
         onFromDateChange,
         onToDateChange,
     } = useTransactionService();

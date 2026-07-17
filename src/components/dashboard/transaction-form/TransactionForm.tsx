@@ -20,7 +20,8 @@ interface ITransactionFormType extends ITransactionBase {
 
 function TransactionForm() {
     const [transactionType, setTransactionType] = useState<CategoryType>('expense');
-    const { categories, editableTransaction, onSave } = useTransactionService();
+    const { categories, transactionFormState, onSave } = useTransactionService();
+
     const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue } = useForm<ITransactionFormType>({
         defaultValues: {
             categoryId: '',
@@ -41,27 +42,27 @@ function TransactionForm() {
             amount: Number(data.amount),
             categoryId: Number(data.categoryId),
             date: data.date,
-            ...(editableTransaction && { id: editableTransaction.id }),
+            ...(transactionFormState && { id: transactionFormState.id }),
         });
 
         reset();
     };
 
     useEffect(() => {
-        if (editableTransaction) {
-            setTransactionType(editableTransaction.category.type);
+        if (transactionFormState) {
+            setTransactionType(transactionFormState.category.type);
 
             reset({
-                description: editableTransaction.description,
-                amount: editableTransaction.amount,
-                categoryId: editableTransaction.category.id,
-                date: editableTransaction.date,
+                description: transactionFormState.description,
+                amount: transactionFormState.amount,
+                categoryId: transactionFormState.category.id,
+                date: transactionFormState.date,
             });
         } else {
             setTransactionType('expense');
             reset();
         }
-    }, [editableTransaction]);
+    }, [transactionFormState]);
 
     return (
         <form

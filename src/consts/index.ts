@@ -32,3 +32,8 @@ export const NOTIFICATION_TYPE = {
     ERROR: 'error',
     INFO: 'info',
 } as const;
+
+export const MODAL_ACTIONS = {
+    OPEN: 'OPEN_MODAL',
+    CLOSE: 'CLOSE_MODAL',
+} as const;

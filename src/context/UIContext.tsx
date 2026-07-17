@@ -1,6 +1,6 @@
 import React from 'react';
-import { NotificationType } from '@app-types/index.ts';
-import { NOTIFICATION_ACTIONS } from '@app-consts/index.ts';
+import { ITransactionResponse, NotificationType } from '@app-types/index.ts';
+import { MODAL_ACTIONS, NOTIFICATION_ACTIONS } from '@app-consts/index.ts';
 
 interface INotification {
     id: number,
@@ -8,19 +8,32 @@ interface INotification {
     type: NotificationType,
 }
 
-interface IStateUI {
-    notifications: INotification[],
-}
-
 interface INotificationAction {
     type: typeof NOTIFICATION_ACTIONS.ADD | typeof NOTIFICATION_ACTIONS.REMOVE,
     payload: INotification,
 }
 
-type UIAction = INotificationAction;
+interface IModalActionOpen {
+    type: typeof MODAL_ACTIONS.OPEN,
+    payload: ITransactionResponse | null,
+}
+
+interface IModalActionClose {
+    type: typeof MODAL_ACTIONS.CLOSE,
+}
+
+type UIAction = INotificationAction | IModalActionOpen | IModalActionClose;
+
+interface IStateUI {
+    notifications: INotification[],
+    isModalOpen: boolean,
+    transactionFormState: ITransactionResponse | null,
+}
 
 const initialState: IStateUI = {
     notifications: [],
+    isModalOpen: false,
+    transactionFormState: null,
 };
 
 const reducer = (state: IStateUI, action: UIAction): IStateUI => {
@@ -35,6 +48,19 @@ const reducer = (state: IStateUI, action: UIAction): IStateUI => {
                 ...state,
                 notifications: state.notifications.filter(n => n.id !== action.payload.id),
             };
+        case MODAL_ACTIONS.OPEN:
+            return {
+                ...state,
+                isModalOpen: true,
+                transactionFormState: action.payload,
+            };
+        case MODAL_ACTIONS.CLOSE:
+            return {
+                ...state,
+                isModalOpen: false,
+                transactionFormState: null,
+            };
+
         default:
             return state;
     }
